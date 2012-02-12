@@ -1,0 +1,152 @@
+Wisteria_ch1	3	0	He	he	PRP	(S(S*	_	He	_
+Wisteria_ch1	3	1	made	make	VBD	(VP*	_	made	made
+Wisteria_ch1	3	2	no	no	DT	(NPB*	no	_	_
+Wisteria_ch1	3	3	remark	remarque	NN	*	_	remark	remark
+Wisteria_ch1	3	4	,	,	PUNC,	*NPB)VP)S)	_	_	_
+Wisteria_ch1	3	5	but	but	CC	*	_	_	_
+Wisteria_ch1	3	6	the	the	DT	(S(NPB*	_	_	_
+Wisteria_ch1	3	7	matter	matter	NN	*NPB)	_	_	_
+Wisteria_ch1	3	8	remained	remain	VBD	(VP*	_	_	_
+Wisteria_ch1	3	9	in	in	IN	(PP*	_	_	_
+Wisteria_ch1	3	10	his	his	PRP$	(NPB*	_	_	_
+Wisteria_ch1	3	11	thoughts	thought	NNS	*	_	_	_
+Wisteria_ch1	3	12	,	,	PUNC,	*NPB)PP)	_	_	_
+Wisteria_ch1	3	13	for	for	IN	(SBAR*	_	_	_
+Wisteria_ch1	3	14	he	he	PRP	(S*	_	_	_
+Wisteria_ch1	3	15	stood	stand	VBD	(VP*	_	_	_
+Wisteria_ch1	3	16	in	in	IN	(PP*	_	_	_
+Wisteria_ch1	3	17	front	front	NN	(NP*	_	_	_
+Wisteria_ch1	3	18	of	of	IN	(PP*	_	_	_
+Wisteria_ch1	3	19	the	the	DT	(NPB*	_	_	_
+Wisteria_ch1	3	20	fire	fire	NN	*NPB)PP)NP)PP)	_	_	_
+Wisteria_ch1	3	21	afterwards	afterward	RB	*	_	_	_
+Wisteria_ch1	3	22	with	with	IN	(PP*	_	_	_
+Wisteria_ch1	3	23	a	a	DT	(NPB*	_	_	_
+Wisteria_ch1	3	24	thoughtful	thoughtful	JJ	*	_	_	_
+Wisteria_ch1	3	25	face	face	NN	*	_	_	_
+Wisteria_ch1	3	26	,	,	PUNC,	*NPB)PP)	_	_	_
+Wisteria_ch1	3	27	smoking	smoke	VBG	(VP(VP*	_	_	_
+Wisteria_ch1	3	28	his	his	PRP$	(NPB*	_	_	_
+Wisteria_ch1	3	29	pipe	pipe	NN	*	_	_	_
+Wisteria_ch1	3	30	,	,	PUNC,	*NPB)VP)	_	_	_
+Wisteria_ch1	3	31	and	and	CC	*	_	_	_
+Wisteria_ch1	3	32	casting	cast	VBG	(VP*	_	_	_
+Wisteria_ch1	3	33	an	an	DT	(NPB*	_	_	_
+Wisteria_ch1	3	34	occasional	occasional	JJ	*	_	_	_
+Wisteria_ch1	3	35	glance	glance	NN	*NPB)	_	_	_
+Wisteria_ch1	3	36	at	at	IN	(PP*	_	_	_
+Wisteria_ch1	3	37	the	the	DT	(NPB*	_	_	_
+Wisteria_ch1	3	38	message	message	NN	*	_	_	_
+Wisteria_ch1	3	39	.	.	PUNC.	*NPB)PP)VP)VP)VP)S)SBAR)VP)S)S)	_	_	_
+
+Wisteria_ch1	23	0	No	no	DT	(S(NPB*	No	_	_
+Wisteria_ch1	23	1	woman	woman	NN	*NPB)	_	woman	_
+Wisteria_ch1	23	2	would	would	MD	(VP*	_	would	_
+Wisteria_ch1	23	3	ever	ever	RB	*	_	ever	_
+Wisteria_ch1	23	4	send	send	VB	(VP*	_	send	_
+Wisteria_ch1	23	5	a	a	DT	(NPB*	_	a	_
+Wisteria_ch1	23	6	reply-paid	reply-paid	JJ	*	_	reply-paid	_
+Wisteria_ch1	23	7	telegram	telegram	NN	*	_	telegram	_
+Wisteria_ch1	23	8	.	.	PUNC.	*NPB)VP)VP)S)	_	_	_
+
+Wisteria_ch1	27	0	My	my	PRP$	(S(NPB*	_	_	_
+Wisteria_ch1	27	1	mind	mind	NN	*NPB)	_	_	_
+Wisteria_ch1	27	2	is	be	VBZ	(VP*	_	_	_
+Wisteria_ch1	27	3	like	like	IN	(PP*	_	_	_
+Wisteria_ch1	27	4	a	a	DT	(NPB*	_	_	_
+Wisteria_ch1	27	5	racing	racing	NN	*	_	_	_
+Wisteria_ch1	27	6	engine	engine	NN	*	_	_	_
+Wisteria_ch1	27	7	,	,	PUNC,	*NPB)PP)	_	_	_
+Wisteria_ch1	27	8	tearing	tear	VBG	(VP*	_	_	_
+Wisteria_ch1	27	9	itself	itself	PRP	*	_	_	_
+Wisteria_ch1	27	10	to	to	TO	(PP*	_	_	_
+Wisteria_ch1	27	11	pieces	piece	NNS	*PP)	_	_	_
+Wisteria_ch1	27	12	because	because	IN	(SBAR*	_	_	_
+Wisteria_ch1	27	13	it	it	PRP	(S*	_	it	_
+Wisteria_ch1	27	14	is	be	VBZ	(VP*	_	is	_
+Wisteria_ch1	27	15	not	not	RB	*	not	_	_
+Wisteria_ch1	27	16	connected	connect	VBN	(VP*	_	connected	connected
+Wisteria_ch1	27	17	up	up	RP	*	_	up	_
+Wisteria_ch1	27	18	with	with	IN	(PP*	_	with	_
+Wisteria_ch1	27	19	the	the	DT	(NPB*	_	the	_
+Wisteria_ch1	27	20	work	work	NN	*NPB)PP)VP)VP)S)SBAR)	_	work	_
+Wisteria_ch1	27	21	for	for	IN	(SBAR(WHPP*	_	for	_
+Wisteria_ch1	27	22	which	which	WDT	*WHPP)	_	which	_
+Wisteria_ch1	27	23	it	it	PRP	(S*	_	it	_
+Wisteria_ch1	27	24	was	be	VBD	(VP*	_	was	_
+Wisteria_ch1	27	25	built	build	VBN	(VP*	_	built	_
+Wisteria_ch1	27	26	.	.	PUNC.	*VP)VP)S)SBAR)VP)VP)S)	_	_	_
+
+Wisteria_ch1	36	0	"	"	PUNC"	(S(S(NPB*	_	_	_
+Wisteria_ch1	36	1	I	I	PRP	*NPB)	_	I	_
+Wisteria_ch1	36	2	have	have	VBP	(VP*	_	have	_
+Wisteria_ch1	36	3	had	have	VBD	(VP*	_	had	_
+Wisteria_ch1	36	4	a	a	DT	(NPB*	_	a	_
+Wisteria_ch1	36	5	most	most	RBS	(ADJP*	_	most	_
+Wisteria_ch1	36	6	singular	singular	JJ	*	_	_	_
+Wisteria_ch1	36	7	and	and	CC	*	_	_	_
+Wisteria_ch1	36	8	unpleasant	unpleasant	JJ	*ADJP)	un	pleasant	pleasant
+Wisteria_ch1	36	9	experience	experience	NN	*	_	experience	_
+Wisteria_ch1	36	10	,	,	PUNC,	*NPB)VP)VP)S)	_	_	_
+Wisteria_ch1	36	11	Mr	Mr	NNP	(NPB*	_	_	_
+Wisteria_ch1	36	12	.	.	PUNC.	*	_	_	_
+Wisteria_ch1	36	13	Holmes	Holmes	NNP	*	_	_	_
+Wisteria_ch1	36	14	,	,	PUNC,	*	_	_	_
+Wisteria_ch1	36	15	"	"	PUNC''	*NPB)	_	_	_
+Wisteria_ch1	36	16	said	say	VBD	(VP*	_	_	_
+Wisteria_ch1	36	17	he	he	PRP	(NPB*	_	_	_
+Wisteria_ch1	36	18	.	.	PUNC.	*NPB)VP)S)	_	_	_
+
+Wisteria_ch1	37	0	"	"	PUNC''	(SINV(ADVP*	_	_	_
+Wisteria_ch1	37	1	Never	never	RB	*ADVP)	Never	_	_
+Wisteria_ch1	37	2	in	in	IN	(PP*	_	in	_
+Wisteria_ch1	37	3	my	my	PRP$	(NPB*	_	my	_
+Wisteria_ch1	37	4	life	life	NN	*NPB)PP)	_	life	_
+Wisteria_ch1	37	5	have	have	VBP	*	_	have	_
+Wisteria_ch1	37	6	I	I	PRP	*	_	I	_
+Wisteria_ch1	37	7	been	be	VBN	(VP*	_	been	_
+Wisteria_ch1	37	8	placed	place	VBN	(VP*	_	placed	placed
+Wisteria_ch1	37	9	in	in	IN	(PP*	_	in	_
+Wisteria_ch1	37	10	such	such	PDT	(NPB*	_	such	_
+Wisteria_ch1	37	11	a	a	DT	*	_	a	_
+Wisteria_ch1	37	12	situation	situation	NN	*	_	situation	_
+Wisteria_ch1	37	13	.	.	PUNC.	*NPB)PP)VP)VP)SINV)	_	_	_
+
+Wisteria_ch1	84	0	"	"	PUNC"	(S(ADJP*	***
+Wisteria_ch1	84	1	Good	Good	JJ	*	***
+Wisteria_ch1	84	2	God	God	NNP	(NPB*	***
+Wisteria_ch1	84	3	!	!	PUNC.	*NPB)ADJP)	***
+Wisteria_ch1	84	4	This	this	DT	*	***
+Wisteria_ch1	84	5	is	be	VBZ	(VP*	***
+Wisteria_ch1	84	6	awful	awful	JJ	(ADJP*	***
+Wisteria_ch1	84	7	!	!	PUNC.	*ADJP)VP)S)	***
+
+Wisteria_ch1	85	0	You	you	PRP	(S*	_	You	_	_	_	_
+Wisteria_ch1	85	1	don't	<unknown>	RB	*	n't	do	_	_	_	_
+Wisteria_ch1	85	2	mean	mean	VBP	(VP*	_	mean	_	_	_	_
+Wisteria_ch1	85	3	-	-	PUNC:	*	_	_	_	_	_	_
+Wisteria_ch1	85	4	-	-	PUNC:	*	_	_	_	_	_	_
+Wisteria_ch1	85	5	you	you	PRP	(S*	_	_	_	_	you	_
+Wisteria_ch1	85	6	don't	<unknown>	RB	(VP*	_	_	_	n't	do	_
+Wisteria_ch1	85	7	mean	mean	VBP	*	_	_	_	_	mean	_
+Wisteria_ch1	85	8	that	that	IN	(SBAR*	_	_	_	_	that	_
+Wisteria_ch1	85	9	I	I	PRP	(S*	_	_	_	_	I	_
+Wisteria_ch1	85	10	am	be	VBP	(VP*	_	_	_	_	am	_
+Wisteria_ch1	85	11	suspected	suspect	VBN	(VP*	_	_	_	_	suspected	_
+Wisteria_ch1	85	12	?	?	PUNC.	*	_	_	_	_	_	_
+Wisteria_ch1	85	13	"	"	PUNC''	*VP)VP)S)SBAR)VP)S)VP)S)	_	_	_	_	_	_
+
+Wisteria_ch1	85	0	You	you	PRP	(S*	_	You	_	_	_	_
+Wisteria_ch1	85	1	don't	<unknown>	RB	*	n't	do	_	_	_	_
+Wisteria_ch1	85	2	mean	mean	VBP	(VP*	_	mean	_	_	_	_
+Wisteria_ch1	85	3	-	-	PUNC:	*	_	_	_	_	_	_
+Wisteria_ch1	85	4	-	-	PUNC:	*	_	_	_	_	_	_
+Wisteria_ch1	85	5	you	you	PRP	(S*	_	_	_	_	you	_
+Wisteria_ch1	85	6	don't	<unknown>	RB	(VP*	_	_	_	n't	do	_
+Wisteria_ch1	85	7	mean	mean	VBP	*	_	_	_	_	mean	_
+Wisteria_ch1	85	8	that	that	IN	(SBAR*	_	_	_	_	that	_
+Wisteria_ch1	85	9	I	I	PRP	(S*	_	_	_	_	I	_
+Wisteria_ch1	85	10	am	be	VBP	(VP*	_	_	_	_	am	_
+Wisteria_ch1	85	11	suspected	suspect	VBN	(VP*	_	_	_	_	suspected	_
+Wisteria_ch1	85	12	?	?	PUNC.	*	_	_	_	_	_	_
+Wisteria_ch1	85	13	"	"	PUNC''	*VP)VP)S)SBAR)VP)S)VP)S)	_	_	_	_	_	_

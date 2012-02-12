@@ -1,0 +1,106 @@
+==================================================
+*SEM SHARED TASK 2012 
+http://www.clips.ua.ac.be/sem2012-st-neg/
+SAMPLE FOR TASK 2 ON FOCUS DETECTION
+==================================================
+
+Below there is a sample of PB-FOC.
+
+Order:
+
+Column 1:         word
+Column 2:         word number
+Column 3:         if N, systems must predict focus for this verbal negation
+Column 4:         POS tag
+Column 5:         Named Entities
+Column 6:         Chunk
+Column 7:         Parse tree
+Columns 8, 9:     dependency relations (parent number and label)
+Columns 10-(N-1): Semantic roles, one column per verb
+Column N:         Focus
+
+Notes:
+
+- All annotations (columns 2-(N-1)) are obtained automatically.
+- The previous and next sentence will be provided as context.
+- Each verbal negation is its own instance, see sample below.
+
+
+============================================================================================================
+A             1  - DT   O        B-NP   (S1(S(NP*    3  det       (A0* *         *       *     *         *
+federal       2  - JJ   O        I-NP   *            3  amod      *    *         *       *     *         *
+judge         3  - NN   O        I-NP   *)           4  nsubj     *)   *         *       *     *         *
+ruled         4  - VBD  O        B-VP   (VP*         0  root      (V*) *         *       *     *         *
+that          5  - IN   O        B-SBAR (SBAR(SBAR*  10 complm    (A1* *         *       *     *         *
+Imelda        6  - NNP  PERSON   B-NP   (S(NP*       7  nn        *    (A0*      *       *     *         *
+Marcos        7  - NNP  PERSON   I-NP   *)           10 nsubjpass *    *)        *       *     *         *
+was           8  - VBD  O        B-VP   (VP*         10 auxpass   *    *         *       *     *         *
+n't           9  - RB   O        I-VP   *            10 neg       *    (AM-NEG*) *       *     *         *
+brought       10 N VBN  O        I-VP   (VP*         4  ccomp     *    (V*)      *       *     *         *
+to            11 - TO   O        B-PP   (PP*         10 prep      *    (A3*      *       *     *         *
+the           12 - DT   O        B-NP   (NP*         13 det       *    *         *       *     *         *
+U.S.          13 - NNP  LOCATION I-NP   *))          11 pobj      *    *)        *       *     *         *
+against       14 - IN   O        B-PP   (PP*         10 prep      *    (AM-MNR*  *       *     *         (FOC*
+her           15 - PRP$ O        B-NP   (NP*         16 poss      *    *         *       *     *         *
+will          16 - MD   O        I-NP   *))))))      14 pobj      *    *)        *       *     *         *)
+and           17 - CC   O        O      *            10 cc        *    *         *       *     *         *
+that          18 - IN   O        B-SBAR (SBAR*       32 complm    *    *         *       *     *         *
+marital       19 - JJ   O        B-NP   (S(NP(NP*    20 amod      *    *         (A3*    *     (A1*      *
+privileges    20 - NNS  O        I-NP   *)           32 nsubj     *    *         *)      *     *         *
+,             21 - ,    O        O      *            20 punct     *    *         *       *     *         *
+which         22 - WDT  O        B-NP   (SBAR(WHNP*) 23 nsubj     *    *         (R-A3*) *     *         *
+protect       23 - VBP  O        B-VP   (S(VP*       20 rcmod     *    *         (V*)    *     *         *
+spouses       24 - NNS  O        B-NP   (NP*)        23 dobj      *    *         (A1*)   (A0*) *         *
+from          25 - IN   O        B-PP   (PP*         23 prep      *    *         (A2*    *     *         *
+incriminating 26 - VBG  O        B-VP   (S(VP*       25 pcomp     *    *         *       (V*)  *         *
+each          27 - DT   O        B-NP   (NP*         28 det       *    *         *       (A1*  *         *
+other         28 - NN   O        I-NP   *)))))))     26 dobj      *    *         *)      *)    *         *
+,             29 - ,    O        O      *)           20 punct     *    *         *       *     *)        *
+do            30 - VBP  O        B-VP   (VP*         32 aux       *    *         *       *     *         *
+n't           31 - RB   O        I-VP   *            32 neg       *    *         *       *     (AM-NEG*) *
+apply         32 - VB   O        I-VP   (VP*         10 conj      *    *         *       *     (V*)      *
+in            33 - IN   O        B-PP   (PP*         32 prep      *    *         *       *     (A2*      *
+her           34 - PRP$ O        B-NP   (NP*         35 poss      *    *         *       *     *         *
+case          35 - NN   O        I-NP   *))))))))    33 pobj      *)   *         *       *     *)        *
+.             36 - .    O        O      *))          4  punct     *    *         *       *     *         *
+============================================================================================================
+
+============================================================================================================
+A             1  - DT   O        B-NP   (S1(S(NP*    3  det       (A0* *         *       *     *         *
+federal       2  - JJ   O        I-NP   *            3  amod      *    *         *       *     *         *
+judge         3  - NN   O        I-NP   *)           4  nsubj     *)   *         *       *     *         *
+ruled         4  - VBD  O        B-VP   (VP*         0  root      (V*) *         *       *     *         *
+that          5  - IN   O        B-SBAR (SBAR(SBAR*  10 complm    (A1* *         *       *     *         *
+Imelda        6  - NNP  PERSON   B-NP   (S(NP*       7  nn        *    (A0*      *       *     *         *
+Marcos        7  - NNP  PERSON   I-NP   *)           10 nsubjpass *    *)        *       *     *         *
+was           8  - VBD  O        B-VP   (VP*         10 auxpass   *    *         *       *     *         *
+n't           9  - RB   O        I-VP   *            10 neg       *    (AM-NEG*) *       *     *         *
+brought       10 - VBN  O        I-VP   (VP*         4  ccomp     *    (V*)      *       *     *         *
+to            11 - TO   O        B-PP   (PP*         10 prep      *    (A3*      *       *     *         *
+the           12 - DT   O        B-NP   (NP*         13 det       *    *         *       *     *         *
+U.S.          13 - NNP  LOCATION I-NP   *))          11 pobj      *    *)        *       *     *         *
+against       14 - IN   O        B-PP   (PP*         10 prep      *    (AM-MNR*  *       *     *         *
+her           15 - PRP$ O        B-NP   (NP*         16 poss      *    *         *       *     *         *
+will          16 - MD   O        I-NP   *))))))      14 pobj      *    *)        *       *     *         *
+and           17 - CC   O        O      *            10 cc        *    *         *       *     *         *
+that          18 - IN   O        B-SBAR (SBAR*       32 complm    *    *         *       *     *         *
+marital       19 - JJ   O        B-NP   (S(NP(NP*    20 amod      *    *         (A3*    *     (A1*      *
+privileges    20 - NNS  O        I-NP   *)           32 nsubj     *    *         *)      *     *         *
+,             21 - ,    O        O      *            20 punct     *    *         *       *     *         *
+which         22 - WDT  O        B-NP   (SBAR(WHNP*) 23 nsubj     *    *         (R-A3*) *     *         *
+protect       23 - VBP  O        B-VP   (S(VP*       20 rcmod     *    *         (V*)    *     *         *
+spouses       24 - NNS  O        B-NP   (NP*)        23 dobj      *    *         (A1*)   (A0*) *         *
+from          25 - IN   O        B-PP   (PP*         23 prep      *    *         (A2*    *     *         *
+incriminating 26 - VBG  O        B-VP   (S(VP*       25 pcomp     *    *         *       (V*)  *         *
+each          27 - DT   O        B-NP   (NP*         28 det       *    *         *       (A1*  *         *
+other         28 - NN   O        I-NP   *)))))))     26 dobj      *    *         *)      *)    *         *
+,             29 - ,    O        O      *)           20 punct     *    *         *       *     *)        *
+do            30 - VBP  O        B-VP   (VP*         32 aux       *    *         *       *     *         *
+n't           31 - RB   O        I-VP   *            32 neg       *    *         *       *     (AM-NEG*) *
+apply         32 N VB   O        I-VP   (VP*         10 conj      *    *         *       *     (V*)      *
+in            33 - IN   O        B-PP   (PP*         32 prep      *    *         *       *     (A2*      (FOC*
+her           34 - PRP$ O        B-NP   (NP*         35 poss      *    *         *       *     *         *
+case          35 - NN   O        I-NP   *))))))))    33 pobj      *)   *         *       *     *)        *)
+.             36 - .    O        O      *))          4  punct     *    *         *       *     *         *
+============================================================================================================
+
