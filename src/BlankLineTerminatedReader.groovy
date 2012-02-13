@@ -20,11 +20,11 @@ public class BlankLineTerminatedReader extends BufferedReader implements Iterato
         if (inSection) {
             // The currentLine will be null if our previous readLine hit EOF.
             if (currentLine != null) {
-                String thisLine = currentLine.trim()
+                String thisLine = currentLine
 
                 if (!thisLine.isEmpty()) {
                     // This line isn't blank, so we prime for next time and let them have this one.
-                    currentLine = super.readLine()
+                    currentLine = super.readLine()?.trim()
                     return thisLine
                 }
             }
@@ -48,11 +48,9 @@ public class BlankLineTerminatedReader extends BufferedReader implements Iterato
     {
         if (currentLine != null) {
             while (currentLine.isEmpty()) {
-                currentLine = super.readLine()
+                currentLine = super.readLine()?.trim()
 
                 if (currentLine == null) break
-
-                currentLine = currentLine.trim()
             }
         }
 
