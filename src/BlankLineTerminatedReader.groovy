@@ -58,11 +58,11 @@ public class BlankLineTerminatedReader extends BufferedReader implements Iterato
     }
 
     @Override
-    Object next()
+    BlankLineTerminatedReader next()
     {
         if (hasNext()) inSection = true
 
-        currentLine
+        this
     }
 
     @Override

@@ -1,3 +1,5 @@
+import com.tinkerpop.blueprints.pgm.impls.tg.TinkerGraph
+
 data_dir = new File('data')
 
 scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-22022012')
@@ -35,27 +37,34 @@ report_file.withPrintWriter { printer ->
                 def negated_sentence_count = 0
                 def missing_export_file_count = 0
                 
-//                def token_inventory = [:].withDefault { 0 }
                 def token_inventory = [:].withDefault { [] }
 
                 def realpred_to_negation_cues = [:].withDefault { [] }
                 def gpred_to_negation_cues = [:].withDefault { [] }
                 def negation_cues = [:].withDefault { [count:0, realpreds:[:].withDefault { 0 }, gpreds:[:].withDefault { 0 }]}
 
-                while (delimitedReader.hasNext()) {
-                    List<String> lines = delimitedReader.next().readLines()
-                    List tokens = CoNLLDecode.decode_lines_to_tokens(lines)
-                    def plain_text = CoNLLDecode.tokens_to_text(tokens)
+                while (delimitedReader.next()) {
+                    List<String> lines = delimitedReader.readLines()
+                    List<Map> words = lines.collect {
+                        def columns = it.split(/\t/)
+                        def (chap_name, sent_indx, tok_indx, word, lemma, pos, syntax) = columns
+                        def labels = columns[7..-1].collect { it.trim() }
+                        [chap_name:chap_name, sent_indx:sent_indx as Integer, tok_indx:tok_indx as Integer, word:word, lemma:lemma, pos:pos, syntax:syntax, labels:labels]
+                    }
 
-                    def negated_scope_count = (tokens[0].labels.size() / 3) as Integer
+                    def negated_scope_count = (words[0].labels.size() / 3) as Integer
+                    
+                    def plain_text = words.collect { it.word }.join(INTERWORDSEP)
+
+                    words.inject(0) { i, word -> word.cfrom = i ; word.cto = i + word.word.length() ; word.cto + INTERWORDSEP.length() }
                     
                     // Zero-based sentence index used by CoNLL.
-                    def sentence_index = (tokens[0].sent_indx as Integer)
+                    def sentence_index = (words[0].sent_indx as Integer)
 
                     // One-based sentence number used by PET.
                     def sentence_number = ++sentence_count
 
-                    p "${tokens[0].chap_name} s${tokens[0].sent_indx} (#$sentence_number) : $plain_text"
+                    p "${words[0].chap_name} s${words[0].sent_indx} (#$sentence_number) : $plain_text"
 
                     def export_file = new File(pet_dir, sentence_number as String)
 
@@ -81,13 +90,17 @@ report_file.withPrintWriter { printer ->
 
                     def node_map = [:]
 
+                    def tg = new TinkerGraph()
+
                     // Can't use collectEntries with XmlSlurper apparently (Groovy 1.8.6).
                     dmrs.node.list().each {
                         def nodeprops = new Expando(id:it.@nodeid.toString().intern(), cfrom:(it.@cfrom).toString() as Integer, cto:(it.@cto.toString()) as Integer) ///, links:[:], revlinks:[:])
 
-//                        node_map['toString'] = { it.id }
+                        def v = tg.addVertex(it.@nodeid)
+                        v.setProperty('cfrom', (it.@cfrom).toString() as Integer)
+                        v.setProperty('cto', (it.@cto).toString() as Integer)
 
-                        nodeprops.words = tokens.findAll { it.cfrom >= nodeprops.cfrom && it.cto <= nodeprops.cto }
+                        nodeprops.words = words.findAll { it.cfrom >= nodeprops.cfrom && it.cto <= nodeprops.cto }
 
                         nodeprops.word = nodeprops.words.find { it.cfrom == nodeprops.cfrom && it.cto == nodeprops.cto }
 
@@ -128,7 +141,7 @@ report_file.withPrintWriter { printer ->
                         // Group the nodes for each token according to the number of tokens spanned.
                         def tok_indx_to_node_map = (Map<Integer, List>) tok_indx_to_nodes.collectEntries { x, nodes -> [x, nodes.groupBy { it.words.size() }]}
 
-                        def negation_cue = tokens.findAll { it.labels[negation_indx * 3] != '_' }
+                        def negation_cue = words.findAll { it.labels[negation_indx * 3] != '_' }
 //                        if (negation_cue.size() == 1) negation_cue = negation_cue[0]
 
                         if (negation_cue) {
@@ -156,17 +169,17 @@ report_file.withPrintWriter { printer ->
                         }
 
                         table(border:1) {
-                            tr { tokens.each { td(it.word) } }
-                            tr { tokens.each { td(it.lemma) } }
-                            tr { tokens.each { td(it.pos) } }
-                            tr { tokens.each { word -> td(valign:'top') { word.labels[(negation_indx * 3)..<((negation_indx + 1) * 3)].each { p(it) } } } }
+                            tr { words.each { td(it.word) } }
+                            tr { words.each { td(it.lemma) } }
+                            tr { words.each { td(it.pos) } }
+                            tr { words.each { word -> td(valign:'top') { word.labels[(negation_indx * 3)..<((negation_indx + 1) * 3)].each { p(it) } } } }
 //                        tr { words.size().times { i -> td(word_nodes[i]?.realpred?.grep { it }?.join(' ') ?: '') } }
 //                        tr { words.size().times { i -> td(word_nodes[i]?.gpred?.grep { it }?.join(' ') ?: '') } }
                             while (tok_indx_to_node_map.size()) {
                                 tr {
                                     def col_indx = 0
                                     def span_dx = 0
-                                    while (col_indx + span_dx < tokens.size()) {
+                                    while (col_indx + span_dx < words.size()) {
                                         def token_node_map = tok_indx_to_node_map[col_indx + span_dx]
                                         if (token_node_map) {
                                             // We'll take the shortest spans first.
