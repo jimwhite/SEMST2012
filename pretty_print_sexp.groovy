@@ -35,12 +35,12 @@ def printTree(Object tree, IndentWriter writer)
         def indent = writer + 1
         def head = tree.head()
         if (head instanceof String) { 
-            indent.print head 
+            indent.print head + ' '
         } else {
             printTree(head, indent)
         }
         def tail = tree.tail()
-        tail.each { if (tail.size() > 1) indent.println() ; printTree(it, indent) }
+        tail.each { if ((head != 'token') && (tail.size() > 1)) indent.println() ; printTree(it, indent) }
         indent.print ")"
     } else {
         writer.print " " + tree

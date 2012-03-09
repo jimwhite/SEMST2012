@@ -84,6 +84,32 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy" line="38" class="convert_conll_to_mallet.groovy" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy" line="36" class="convert_conll_to_mallet.groovy" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -145,7 +171,7 @@
       <file leaf-file-name="post_process_parses.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post_process_parses.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1401" selection-end="1401" vertical-scroll-proportion="0.0">
+            <state line="130" column="61" selection-start="5936" selection-end="5949" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -154,7 +180,7 @@
       <file leaf-file-name="post_parse_process.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post_parse_process.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="0" selection-start="2381" selection-end="2381" vertical-scroll-proportion="0.0">
+            <state line="165" column="110" selection-start="7986" selection-end="8060" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -163,43 +189,25 @@
       <file leaf-file-name="CoNLLDecode.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0">
+            <state line="317" column="0" selection-start="10555" selection-end="10555" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StringBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/StringBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="11" selection-start="3159" selection-end="3159" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractStringBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/AbstractStringBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="15" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="convert_conll_to_text.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="convert_conll_to_text.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convert_conll_to_text.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="676" selection-end="676" vertical-scroll-proportion="0.4531722">
+            <state line="20" column="0" selection-start="676" selection-end="676" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="token_inventory.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/token_inventory.groovy">
+      <file leaf-file-name="convert_conll_to_trees.groovy" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/convert_conll_to_trees.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="58" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+            <state line="14" column="60" selection-start="474" selection-end="474" vertical-scroll-proportion="0.21063189">
               <folding />
             </state>
           </provider>
@@ -208,7 +216,34 @@
       <file leaf-file-name="pretty_print_sexp.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pretty_print_sexp.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="50" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.0">
+            <state line="46" column="33" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tree_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tree_to_mallet.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="70" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="read_scope_output.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/read_scope_output.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="1" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_conll_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="79" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -238,15 +273,19 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/pretty_print_sexp.groovy" />
         <option value="$PROJECT_DIR$/CoNLL2Sexp.groovy" />
         <option value="$PROJECT_DIR$/convconll.groovy" />
         <option value="$PROJECT_DIR$/token_inventory.groovy" />
         <option value="$PROJECT_DIR$/post_process_parses.groovy" />
         <option value="$PROJECT_DIR$/src/BlankLineTerminatedReader.groovy" />
-        <option value="$PROJECT_DIR$/post_parse_process.groovy" />
-        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
         <option value="$PROJECT_DIR$/convert_conll_to_text.groovy" />
+        <option value="$PROJECT_DIR$/post_parse_process.groovy" />
+        <option value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
+        <option value="$PROJECT_DIR$/pretty_print_sexp.groovy" />
+        <option value="$PROJECT_DIR$/convert_conll_to_trees.groovy" />
+        <option value="$PROJECT_DIR$/read_scope_output.groovy" />
+        <option value="$PROJECT_DIR$/tree_to_mallet.groovy" />
+        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
       </list>
     </option>
   </component>
@@ -254,9 +293,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
+    <option name="x" value="6" />
     <option name="y" value="22" />
-    <option name="width" value="1884" />
+    <option name="width" value="1911" />
     <option name="height" value="1178" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -291,24 +330,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="SEMST2012" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="groovy-1.8.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SEMST2012" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -364,52 +385,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy Script.convert_conll_to_text">
-    <configuration default="false" name="CoNLL2Sexp" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="SEMST2012" />
-      <setting name="path" value="$PROJECT_DIR$/CoNLL2Sexp.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="post_parse_process" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="SEMST2012" />
-      <setting name="path" value="$PROJECT_DIR$/post_parse_process.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="token_inventory" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="SEMST2012" />
-      <setting name="path" value="$PROJECT_DIR$/token_inventory.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Groovy Script.read_scope_output">
     <configuration default="false" name="post_process_parses" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
       <module name="SEMST2012" />
       <setting name="path" value="$PROJECT_DIR$/post_process_parses.groovy" />
@@ -424,6 +400,39 @@
     <configuration default="false" name="convert_conll_to_text" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
       <module name="SEMST2012" />
       <setting name="path" value="$PROJECT_DIR$/convert_conll_to_text.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="convert_conll_to_trees" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
+      <module name="SEMST2012" />
+      <setting name="path" value="$PROJECT_DIR$/convert_conll_to_trees.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tree_to_mallet" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
+      <module name="SEMST2012" />
+      <setting name="path" value="$PROJECT_DIR$/tree_to_mallet.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="read_scope_output" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
+      <module name="SEMST2012" />
+      <setting name="path" value="$PROJECT_DIR$/read_scope_output.groovy" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
       <setting name="workDir" value="$PROJECT_DIR$" />
@@ -574,12 +583,30 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Groovy Script.CoNLL2Sexp" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy Script.post_parse_process" />
-      <item index="2" class="java.lang.String" itemvalue="Groovy Script.token_inventory" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy Script.post_process_parses" />
-      <item index="4" class="java.lang.String" itemvalue="Groovy Script.convert_conll_to_text" />
+    <configuration default="false" name="convert_conll_to_mallet" type="GroovyScriptRunConfiguration" factoryName="Groovy Script">
+      <module name="SEMST2012" />
+      <setting name="path" value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="data/SEM-2012-SharedTask-CD-SCO-28022012/SEM-2012-SharedTask-CD-SCO-training-28022012.txt" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Groovy Script.post_process_parses" />
+      <item index="1" class="java.lang.String" itemvalue="Groovy Script.convert_conll_to_text" />
+      <item index="2" class="java.lang.String" itemvalue="Groovy Script.convert_conll_to_trees" />
+      <item index="3" class="java.lang.String" itemvalue="Groovy Script.tree_to_mallet" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy Script.read_scope_output" />
+      <item index="5" class="java.lang.String" itemvalue="Groovy Script.convert_conll_to_mallet" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -614,8 +641,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1884" height="1178" extended-state="0" />
-    <editor active="true" />
+    <frame x="6" y="22" width="1911" height="1178" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -627,16 +654,16 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24972796" sideWeight="0.6713881" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21983914" sideWeight="0.67044383" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15545993" sideWeight="0.6713881" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19260065" sideWeight="0.6713881" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3286119" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16729222" sideWeight="0.67044383" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295562" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -697,26 +724,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/java/lang/String.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="19" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../Groovy/groovy-1.8.6/lib/groovy-1.8.6.jar!/groovy/util/XmlSlurper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Groovy/groovy-1.8.6-src/src/main/groovy/util/Expando.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="11" selection-start="1292" selection-end="1292" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Groovy/groovy-1.8.6-src/src/main/groovy/util/XmlSlurper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="14" selection-start="4381" selection-end="4381" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Groovy/groovy-1.8.6-src/src/main/groovy/util/slurpersupport/GPathResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="22" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0" />
@@ -732,9 +739,14 @@
         <state line="37" column="16" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.40789473" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post_process_parses.groovy">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/StringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1401" selection-end="1401" vertical-scroll-proportion="0.0" />
+        <state line="78" column="11" selection-start="3159" selection-end="3159" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/AbstractStringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="15" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/token_inventory.groovy">
@@ -742,49 +754,62 @@
         <state line="7" column="58" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pretty_print_sexp.groovy">
+    <entry file="file://$PROJECT_DIR$/post_process_parses.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="50" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlankLineTerminatedReader.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="12" selection-start="1571" selection-end="1571" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/AbstractStringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="15" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home/src.jar!/src/java/lang/StringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="11" selection-start="3159" selection-end="3159" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="130" column="61" selection-start="5936" selection-end="5949" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/post_parse_process.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="2381" selection-end="2381" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="165" column="110" selection-start="7986" selection-end="8060" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
+    <entry file="file://$PROJECT_DIR$/pretty_print_sexp.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="46" column="33" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlankLineTerminatedReader.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="12" selection-start="1571" selection-end="1571" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/convert_conll_to_text.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="676" selection-end="676" vertical-scroll-proportion="0.4531722">
+        <state line="20" column="0" selection-start="676" selection-end="676" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="317" column="0" selection-start="10555" selection-end="10555" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/read_scope_output.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="1" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="79" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree_to_mallet.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="70" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_conll_to_trees.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="60" selection-start="474" selection-end="474" vertical-scroll-proportion="0.21063189">
           <folding />
         </state>
       </provider>

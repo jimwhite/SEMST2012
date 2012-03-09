@@ -1,0 +1,68 @@
+insufferable but not insuperable
+
+Tokenization trouble:
+
+Wisteria_ch2 s187 (#532) : But the attempt was a dangerous one , and if Garcia did [N O T] return by a certain hour it was probable that his own life had been sacrificed .
+
+Multitoken negation cues (in addition to #523):
+
+Wisteria_ch1 s247 (#248) : " Remarkable , but [by no means] impossible , " said Holmes , smiling .
+
+Non-contiguous multitoken negation cues:
+
+Wisteria_ch1 s121 (#122) : The dinner itself was [neither] well served [nor] well cooked , and the gloomy presence of the taciturn servant did not help to enliven us .
+
+Wisteria_ch1 s220 (#221) : There are [no] footsteps [nor] any clue to the criminals . "
+
+(Self) echo q is not a negation:  
+
+Wisteria_ch2 s189 (#534) : That would fully explain the facts , would it not ? "
+
+
+fearless:  'fear' is the scope and event with a cue of 'less' in: 
+	Wisteria_ch2 s325 (#670) : Strong , fearless , and energetic , he had sufficient virtue to enable him to impose his odious vices upon a cowering people for ten or twelve years .
+
+But for something like "It was a fearless act." then scope would be to be "fear act" I think.
+
+
+baskervilles01 s1 (#2) : Mr. Sherlock Holmes , who was usually very late in the mornings , save upon those not infrequent occasions when he was up all night , was seated at the breakfast table .
+
+"save upon" should be the cue but only "save" is tagged.  Or not I guess.  Aparently is in the synset of 'except'.
+
+It appears again, but they miss it:
+
+baskervilles09 s346 (#2160) : A guttering candle was stuck in a crevice of the rocks which flanked it on each side so as to keep the wind from it and also to prevent it from being visible , save in the direction of Baskerville Hall .
+
+The negation 'prevent' is tagged, but not 'save in the direction...'.  Or is that correct because it is double negation? (the candle is visible in the direction of the hall).
+
+./parse --binary --erg+tnt --text ~/Pro
+./redwoods --binary --erg --target /home2/jimwhite/Projects/gondor.school/SEMST2012/xxx --export tree,dmrx erg/1111/dev50_sentences/12-02-12/pet
+
+baskervilles04 s233 (#804) : No. 2704 is our man .
+
+"No." is tagged as a cue but it is not negation (it is an abbreviation for Number).
+
+
+Parse failure due to graph size limit:
+
+baskervilles01 s30 (#31) : He had never said as much before , and I must admit that his words gave me keen pleasure , for I had often been piqued by his indifference to my admiration and to the attempts which I had made to give publicity to his methods .
+
+This will parse (9354 edges):
+
+I was piqued by his indifference to my admiration and to the attempts which I had made to give publicity to his methods
+
+So will this (15760 edges) - although the one-best tree doesn't look very convincing:
+
+He had never said as much before , and I must admit that his words gave me keen pleasure , for I had often been piqued by his indifference
+
+Discontiguous scope:
+
+baskervilles03 s67 (#389) : `` [I could <not> call you in] , Mr. Holmes , [without disclosing these facts to the world], and I have already given my reasons for not wishing to do so .
+
+
+Probable annotation error:
+
+baskervilles09 s383 (#2197) : There was the sharp pinnacle of granite still cutting the lower edge of the moon , but its peak bore no trace of that silent and motionless figure .
+
+The scope of "motionless" is just "motion" and "that".
+

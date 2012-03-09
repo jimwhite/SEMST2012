@@ -5,7 +5,7 @@ dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-22022012.txt
 
 plain_text_file = new File(data_dir, 'training_sentences.txt')
 
-pet_dir = new File(data_dir, "erg.1111.training_sentences.12-02-26.pet")
+pet_dir = new File(data_dir, "erg.1111.training_sentences.12-02-28.pet")
 
 //pet_dir = new File(data_dir, "erg.1111.${plain_text_file.name - /.txt/}.12-02-26.pet")
 //println pet_dir.name
@@ -155,13 +155,22 @@ report_file.withPrintWriter { printer ->
                             p { b("MISSING NEGATION CUE") }
                         }
 
+
+
                         table(border:1) {
                             tr { tokens.each { td(it.word) } }
                             tr { tokens.each { td(it.lemma) } }
                             tr { tokens.each { td(it.pos) } }
-                            tr { tokens.each { word -> td(valign:'top') { word.labels[(negation_indx * 3)..<((negation_indx + 1) * 3)].each { p(it) } } } }
-//                        tr { words.size().times { i -> td(word_nodes[i]?.realpred?.grep { it }?.join(' ') ?: '') } }
-//                        tr { words.size().times { i -> td(word_nodes[i]?.gpred?.grep { it }?.join(' ') ?: '') } }
+                            tr { tokens.each { token ->
+                                td(valign:'top') {
+                                    def labels = token.labels[(negation_indx * 3)..<((negation_indx + 1) * 3)]
+                                    labels.each { p(it) }
+
+                                    if ((labels[2] != "_") && (token.pos =~ /.*\W.*/)) {
+                                        p('PUNC_CUE')
+                                    }
+                                }
+                            } }
                             while (tok_indx_to_node_map.size()) {
                                 tr {
                                     def col_indx = 0
