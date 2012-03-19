@@ -1,57 +1,68 @@
+#!/usr/bin/env groovy
 
 data_dir = new File('data')
-scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-22022012')
+scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
-dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-22022012.txt')
+train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.txt')
+dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-dev-09032012.txt')
 
-//dev_file = new File('docs/annotated.txt')
+train_cues_file = new File(data_dir, 'train.cues.txt')
+dev_cues_file = new File(data_dir, 'dev.cues.txt')
 
-// mallet import-file --input data/train.mallet.txt --output data/train.vectors
-// mallet train-classifier --input data/train.vectors --training-portion 0.9 --trainer MaxEnt
+train_trees_file = new File(data_dir, 'train.trees.txt')
+dev_trees_file = new File(data_dir, 'dev.trees.txt')
 
-out_file = new File(data_dir, 'train.mallet.txt')
+train_scope_file = new File(data_dir, 'train.scope.txt')
+train_scope_vectors = new File(data_dir, 'train.scope.vectors')
+dev_scope_file = new File(data_dir, 'dev.scope.txt')
 
-def neg_only = false
+train_scope_output = new File(data_dir, "output.train.scope.txt")
+dev_scope_output = new File(data_dir, "output.dev.scope.txt")
 
-def affixes = ['un', 'im', 'dis', 'ir', 'in']
+prepare_data = false
 
-out_file.withPrintWriter { printer ->
+if (prepare_data) {
+    def decoder = new CoNLLDecode()
 
-dev_file.withReader { reader ->
-    def delimitedReader = new BlankLineTerminatedReader(reader)
-    
-    while (delimitedReader.next()) {
-        // Can't use this because DGM.getFile(BufferedReader) uses read not readLine.
-        // println delimitedReader.text
-        // But readLines does.
-        List<String> lines = delimitedReader.readLines()
+    decoder.convert_to_cue_data(train_file, train_cues_file)
+    decoder.convert_to_cue_data(dev_file, dev_cues_file)
 
-        def tokens = CoNLLDecode.decode_lines_to_tokens(lines)
+    decoder.convert_to_trees(train_file, train_trees_file)
+    decoder.convert_to_trees(dev_file, dev_trees_file)
 
-
-        tokens.each { token ->
-            String id = token.with { chap_name + '/' + sent_indx + '/' + tok_indx }
-
-            def negation_labels = token.labels.collate(1, 3)
-
-            def cue_label = null
-            if (negation_labels.size()) {
-                cue_label = negation_labels[0].find { it != '_' & it != '***' }
-            }
-
-            def features = [:]
-            
-            features['word_' + token.word.toLowerCase()] = 1
-            features['lemma_' + token.lemma] = 1
-            features['pos_' + token.pos] = 1
-            
-            affixes.each { if (token.word.startsWith(it) && (token.word.length() > it.length())) features['affix_' + it] = 1 }
-            
-            if (cue_label || !neg_only) {
-                printer.println id + '\t' + (cue_label ? cue_label.toLowerCase() : '_pos_') + '\t' + features.collect { k, v -> k + '\t' + v }.join('\t')
-            }
-        }
-    }
+    decoder.tree_to_mallet(train_trees_file, train_scope_file)
+    decoder.tree_to_mallet(dev_trees_file, dev_scope_file)
 }
 
-}
+/*
+ mallet import-file --input data/train.mallet.txt --output data/train.vectors
+ mallet train-classifier --input data/train.vectors --training-portion 0.9 --trainer MaxEnt
+
+ mallet import-file --input data/train.scope.txt --output data/train.scope.vectors
+ mallet train-classifier --input data/train.scope.vectors --training-portion 0.9 --trainer MaxEnt
+
+ mallet import-file --input data/split_train.up_scope.txt --output data/split_train.up_scope.vectors
+ mallet import-file --input data/split_test.up_scope.txt --output data/split_test.up_scope.vectors --use-pipe-from data/split_train.up_scope.vectors
+ mallet train-classifier --input data/split_train.up_scope.vectors --trainer MaxEnt --output-classifier up_scope_max_ent.classifier
+ mallet classify-file --input data/split_test.up_scope.txt --output - --classifier up_scope_max_ent.classifier
+  */
+
+def train_scope_vectors_process = ["mallet", "import-file", "--input", train_scope_file
+        , "--output", train_scope_vectors].execute()
+println "train_scope_vectors_process = ${train_scope_vectors_process.waitFor()}"
+
+scope_classifier = new File(data_dir, "scope_max_ent.classifier")
+
+def train_scope_classifier_process = ["mallet", "train-classifier", "--input", train_scope_vectors
+        , "--trainer", "MaxEnt", "--output-classifier", scope_classifier].execute()
+println "train_scope_classifier_process = ${train_scope_classifier_process.waitFor()}"
+
+def classify_train_scope_process = ["mallet", "classify-file", "--input", train_scope_file
+        , "--classifier", scope_classifier, "--output", train_scope_output].execute()
+println "classify_train_scope_process = ${classify_train_scope_process.waitFor()}"
+
+def classify_dev_scope_process = ["mallet", "classify-file", "--input", dev_scope_file
+        , "--classifier", scope_classifier, "--output", dev_scope_output].execute()
+println "classify_dev_scope_process = ${classify_dev_scope_process.waitFor()}"
+
+

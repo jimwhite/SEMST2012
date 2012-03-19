@@ -2,8 +2,8 @@
 
 # Author: Roser Morante
 # Institution: CLiPS - University of Antwerp
-# Version 1.0
-# Date: 12Feb2012
+# Version 2.0
+# Date: 12March2012
 
 
 use strict;
@@ -25,23 +25,29 @@ my $tmp_linep = "";
 my @tmp_lineg = ();
 my @tmp_linep = ();
 
+my @POS = ();
+
 my @neg_cols_g = ();
 my @neg_cols_p = ();
 
 my @neg_words_g = ();
 my @scope_words_g = ();
+my @scope_words_nopunc_g = ();
 my @negated_words_g = ();
 
 my @neg_tokens_g = ();
 my @scope_tokens_g = ();
+my @scope_tokens_nopunc_g = ();
 my @negated_tokens_g = ();
 
 my @neg_words_p = ();
 my @scope_words_p = ();
+my @scope_words_nopunc_p = ();
 my @negated_words_p = ();
 
 my @neg_tokens_p = ();
 my @scope_tokens_p = ();
+my @scope_tokens_nopunc_p = ();
 my @negated_tokens_p = ();
 
 my @first_token_negs_g = ();
@@ -58,14 +64,20 @@ my $zero_negs_g = "";
 
 my $fp_cue = 0;
 my $fp_scope = 0;
+my $fp_scope_nopunc = 0;
+my $fp_scope_tokens = 0;
 my $fp_negated = 0;
 
 my $fn_cue = 0;
 my $fn_scope = 0;
+my $fn_scope_nopunc = 0;
+my $fn_scope_tokens = 0;
 my $fn_negated = 0;
 
 my $tp_cue = 0;
 my $tp_scope = 0;
+my $tp_scope_nopunc = 0;
+my $tp_scope_tokens = 0;
 my $tp_negated = 0;
 
 my $fp_full_negation = 0;
@@ -76,13 +88,23 @@ my $fp_negated_apart = 0;
 my $tp_negated_apart = 0;
 my $fn_negated_apart = 0;
 
+my $fp_scope_apart = 0;
+my $tp_scope_apart = 0;
+my $fn_scope_apart = 0;
+
 my $cues_g = 0;
 my $scopes_g = 0;
+my $scope_tokens_g = 0;
 my $negated_g = 0;
 
 my $cues_p = 0;
 my $scopes_p = 0;
+my $scope_tokens_p = 0;
 my $negated_p = 0;
+
+my $total_scope_tokens_g = 0;
+my $total_scope_tokens_p = 0;
+
 
 my $error_found = 0;
 
@@ -98,22 +120,27 @@ my $y = 0;
 
 my $val = 0;
 my $found = 0;
+my $found_scope_token = 0;
 
 
 my $st_neg_words_g = "";
 my $st_scope_words_g = "";
+my $st_scope_words_nopunc_g = "";
 my $st_negated_words_g = "";
 
 my $st_neg_tokens_g = "";
 my $st_scope_tokens_g = "";
+my $st_scope_tokens_nopunc_g = "";
 my $st_negated_tokens_g = "";
 
 my $st_neg_words_p = "";
 my $st_scope_words_p = "";
+my $st_scope_words_nopunc_p = "";
 my $st_negated_words_p = "";
 
 my $st_neg_tokens_p = "";
 my $st_scope_tokens_p = "";
+my $st_scope_tokens_nopunc_p = "";
 my $st_negated_tokens_p = "";
 
 my $max_negs_g = -1;
@@ -131,10 +158,19 @@ my $max_linep = -1;
 my $max_neg_tokens_p = -1;
 my $max_neg_tokens_g = -1;
 
+my $max_scope_tokens_p = -1;
+my $max_scope_tokens_g = -1;
+
 my $max_negated_tokens_p = -1;
 my $max_negated_tokens_g = -1;
 my $max_negated_words_p = -1;
 my $max_negated_words_g = -1;
+
+my $max_negated_tokens_nopunc_p = -1;
+my $max_negated_tokens_nopunc_g = -1;
+my $max_negated_words_nopunc_p = -1;
+my $max_negated_words_nopunc_g = -1;
+  
   
 my $tmp_neg_g = "";
 my $tmp_neg_p = "";
@@ -151,28 +187,38 @@ print<<'MYEOT';
 
  This evaluation script compares the output of a system versys a gold annotation and provides the following information:
 
- ------------+------+--------+-----+-----+-----+---------------+------------+---------
-             | gold | system | tp  | fp  | fn  | precision (%) | recall (%) | F1  (%) 
- ------------+------+--------+-----+-----+-----+---------------+------------+---------
- Cues:              |        |     |     |     |               |            |   
- Scope:             |        |     |     |     |               |            |   
- Negated:           |        |     |     |     |               |            |   
- Full negation:     |        |     |     |     |               |            |   
- ------------+------+--------+-----+-----+-----+---------------+------------+---------
- # sentences: 
- # negation sentences: 
+ ----------------------------+------+--------+------+------+------+---------------+------------+---------
+                             | gold | system | tp   | fp   | fn   | precision (%) | recall (%) | F1  (%) 
+ ----------------------------+------+--------+------+------+------+---------------+------------+---------
+ Cues:                              |        |      |      |      |               |            |        
+ Scopes(cue match):                 |        |      |      |      |               |            |        
+ Scopes(no cue match):              |        |      |      |      |               |            |        
+ Scopes(no cue match, no punc):     |        |      |      |      |               |            |        
+ Scope tokens(no cue match):        |        |      |      |      |               |            |        
+ Negated(no cue match):             |        |      |      |      |               |            |        
+ Full negation:                     |        |      |      |      |               |            |        
+ ----------------------------+------+--------+------+------+------+---------------+------------+---------
+ # sentences:  
+ # negation sentences:  
  # negation sentences with errors: 
- % correct sentences: 
- % correct negation sentences: 
+ % correct sentences:  
+ % correct negation sentences:  
+ --------------------------------------------------------------------------------------------------------
 
- The F measures for cues, scope, and negated are calculated at scope level.
+
+ The F measures for "cues", "scope", and "negated" are calculated at scope level.
+ The F measures for "scope tokens" are calculated at token level.
 
  For cue, scope and negated to be correct, both, the tokens and the words or parts of words have to be
  correclty identified.
 
- For the scope to be correct, the cue has to be correct.
-
- Negated is evaluated apart from cue and scope.
+ - In "scopes(cue match)", for the scope to be correct, the cue has to be correct.
+ - In "scope(no cue match)", for the scope to be correct, the cue doesn't need to be completely correct, though there must be a token
+     of overlap between the cue predicted by the system and the gold cue.
+ - In "scope(no cue match, no punc)" same as "scope(no cue match)"; additionally, punctuation marks are not counted.
+ - In "scope tokens(no cue match)", for the scope tokens to be correct, the cue doesn't need to be completely correct, though there must be a token
+     of overlap between the cue predicted by the system and the gold cue.
+ - In "negated(no cue match)", negated is evaluated apart from cue and scope.
 
  For a full negation to be correct, all elements have to be correct: cue, scope, and negated.
 
@@ -186,7 +232,7 @@ print<<'MYEOT';
 
  Gold annotation: cue is "un" and  scope is "decided".
 
- If system identifies "und" as cue and "decided" as scope, it will be counted as false negative for cue and for scope, 
+ If system identifies "und" as cue and "decided" as scope, it will be counted as false negative for cue and for scope (in scopes cue match), 
  because cue is incorrect.
  If system identifies "un" as cue and "undecided" as scope, cue will count as true positive and scope as false negative.
 
@@ -194,7 +240,7 @@ print<<'MYEOT';
 
  Gold annotation: cue is "un" and  scope is "decided".
  System doesn't have a negation.
- Cue and scope will be false negatives.
+ Cue and scope will be false negatives (in scopes cue match).
 
  Example 3:
 
@@ -317,6 +363,8 @@ sub get_info_sentence {
   $tmp_neg_g = "";
   $tmp_neg_p = "";
   
+  push @POS, $tmp_lineg[5];
+
   for ($i=7;$i<=$max_lineg;$i++){
     $val = $i / 3;
     if ($i == 7 && $tmp_lineg[$i] eq "***"){
@@ -359,6 +407,7 @@ sub get_info_sentence {
 
 sub process_sentence {
 
+
 ### processes information in arrays @neg_cols_g, @neg_cols_p
 ### the arrays contain as main elements as tokens in sentence
 ### each element of the array contains information per negation separated by tabs, 
@@ -372,18 +421,22 @@ sub process_sentence {
 
 ### @neg_words_g 
 ### @scope_words_g 
+### @scope_words_nopunc_g 
 ### @negated_words_g 
 
 ### @neg_tokens_g 
 ### @scope_tokens_g 
+### @scope_tokens_nopunc_g
 ### @negated_tokens_g 
 
 ### @neg_words_p 
 ### @scope_words_p 
+### @scope_words_nopunc_p
 ### @negated_words_p 
 
 ### @neg_tokens_p 
 ### @scope_tokens_p 
+### @scope_tokens_nopunc_p 
 ### @negated_tokens_p 
 
 ### arrays
@@ -410,6 +463,7 @@ my @neg_by_neg_cols_p = ();
 #############################
 
 $count_sentences++;
+
 
 ### no negations in gold
 if ($neg_cols_g[0] eq "***"){
@@ -440,6 +494,11 @@ if ($neg_cols_g[0] eq "***"){
       if ($neg_by_neg_cols_g[1] ne "_"){
 	push @{$scope_words_g[$z]}, $neg_by_neg_cols_g[1];
 	push @{$scope_tokens_g[$z]}, $i;
+	$total_scope_tokens_g++;
+	if ($POS[$i] =~ /\w/ && $POS[$i] ne "-LRB-" && $POS[$i] ne "-RRB-" ){
+	  push @{$scope_words_nopunc_g[$z]}, $neg_by_neg_cols_g[1];
+	  push @{$scope_tokens_nopunc_g[$z]}, $i;
+	}
       }
       if ($neg_by_neg_cols_g[2] ne "_"){
 	push @{$negated_words_g[$z]}, $neg_by_neg_cols_g[2];
@@ -448,7 +507,10 @@ if ($neg_cols_g[0] eq "***"){
       
       @neg_by_neg_cols_g = ();
 
-    }
+
+ 
+
+    }### $z
 
 
     @tmp_neg_cols_g = ();
@@ -466,8 +528,14 @@ if ($neg_cols_g[0] eq "***"){
       if (!(defined(@{$scope_words_g[$z]}))){
 	@{$scope_words_g[$z]} = ();
       }
+      if (!(defined(@{$scope_words_nopunc_g[$z]}))){
+	@{$scope_words_nopunc_g[$z]} = ();
+      }
       if (!(defined(@{$scope_tokens_g[$z]}))){
 	@{$scope_tokens_g[$z]} = ();
+      }
+     if (!(defined(@{$scope_tokens_nopunc_g[$z]}))){
+	@{$scope_tokens_nopunc_g[$z]} = ();
       }
       if (!(defined(@{$negated_words_g[$z]}))){
 	@{$negated_words_g[$z]} = ();
@@ -534,6 +602,11 @@ if ($neg_cols_p[0] eq "***"){
       if ($neg_by_neg_cols_p[1] ne "_"){
 	push @{$scope_words_p[$z]}, $neg_by_neg_cols_p[1];
 	push @{$scope_tokens_p[$z]}, $i;
+	$total_scope_tokens_p++;
+	if ($POS[$i] =~ /\w/ && $POS[$i] ne "-LRB-"&& $POS[$i] ne "-RRB-"){
+	  push @{$scope_words_nopunc_p[$z]}, $neg_by_neg_cols_p[1];
+	  push @{$scope_tokens_nopunc_p[$z]}, $i;
+	}
       }
       if ($neg_by_neg_cols_p[2] ne "_"){
 	push @{$negated_words_p[$z]}, $neg_by_neg_cols_p[2];
@@ -558,8 +631,14 @@ if ($neg_cols_p[0] eq "***"){
       if (!(defined(@{$scope_words_p[$z]}))){
 	@{$scope_words_p[$z]} = ();
       }
+      if (!(defined(@{$scope_words_nopunc_p[$z]}))){
+	@{$scope_words_nopunc_p[$z]} = ();
+      }
       if (!(defined(@{$scope_tokens_p[$z]}))){
 	@{$scope_tokens_p[$z]} = ();
+      }
+     if (!(defined(@{$scope_tokens_nopunc_p[$z]}))){
+	@{$scope_tokens_nopunc_p[$z]} = ();
       }
      if (!(defined(@{$negated_words_p[$z]}))){      
 	@{$negated_words_p[$z]} = ();
@@ -617,7 +696,6 @@ if ($neg_cols_p[0] eq "***"){
 
 sub update_counts_for_eval {
 
-
 ### Counting number of tp, fp, fn for:
 ### cue
 ### scope (tp requires that cue is correct)
@@ -649,6 +727,7 @@ sub update_counts_for_eval {
 
 $st_neg_words_g = "";
 $st_scope_words_g = "";
+$st_scope_words_nopunc_g = "";
 $st_negated_words_g = "";
 
 $st_neg_tokens_g = "";
@@ -657,6 +736,7 @@ $st_negated_tokens_g = "";
 
 $st_neg_words_p = "";
 $st_scope_words_p = "";
+$st_scope_words_nopunc_p = "";
 $st_negated_words_p = "";
 
 $st_neg_tokens_p = "";
@@ -676,6 +756,7 @@ if (@first_token_negs_p) {
   $max_negs_p = -1;
 }
 
+
 if (@first_token_negated_g){
   $max_negated_g = $#first_token_negated_g;
 } else {
@@ -690,6 +771,7 @@ if (@first_token_negated_p){
 
 
 
+
 ####################################################
 ## gold has negations in sentence, system has
 ## not found negations in sentence
@@ -697,6 +779,7 @@ if (@first_token_negated_p){
 if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 
   $error_found = 1;
+  
  
    for ($i=0;$i<=$max_negs_g;$i++){
 
@@ -707,6 +790,9 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 
 	if (@{$scope_tokens_g[$i]}){
 	  $fn_scope++;
+	  for ($z=0;$z<=$#{$scope_tokens_g[$i]};$z++){
+	    $fn_scope_tokens++;
+	  }
 	}
 
 	if (@{$negated_tokens_g[$i]}){
@@ -725,14 +811,15 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 
 } elsif ($zero_negs_g eq "no" && $zero_negs_p eq "no"){
 
-
+ 
   ## $i iterates over negations in gold
   for ($i=0;$i<=$max_negs_g;$i++){
-
+    
     #$z iterates over negations in system
     for ($z=0;$z<=$max_negs_p;$z++){
 
-	## udpate variables with the string of  negation cue, scope and negated
+      
+	## udpate variables with the string of negation cue, scope and negated
 	## in gold
 	
 	if (@{$neg_words_g[$i]}){
@@ -812,11 +899,11 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 	$max_neg_tokens_p = $#{$neg_tokens_p[$z]};
 	$max_neg_tokens_g = $#{$neg_tokens_g[$i]};
 	
-	$found =0;
+	$found = 0;
 
 	for ($y=0;$y<=$max_neg_tokens_g;$y++){
 	  for ($x=0;$x<=$max_neg_tokens_p;$x++){
-
+	    	 
 	    if ($neg_tokens_g[$i][$y] == $neg_tokens_p[$z][$x]){
 	      $found = 1;
 	      last;
@@ -827,6 +914,57 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
     
 	## if a negation in gold is also found in system
 	if ($found ==1){
+
+  
+	  
+	  ## update count for scope tokens
+	  $max_scope_tokens_p = $#{$scope_tokens_p[$z]};
+	  $max_scope_tokens_g = $#{$scope_tokens_g[$i]};
+	 
+
+	  ## iterate over gold tokens to find tp and fn
+	  for ($y=0;$y<=$max_scope_tokens_g;$y++){
+	    $found_scope_token = 0;
+	    for ($x=0;$x<=$max_scope_tokens_p;$x++){
+	      if ($scope_tokens_g[$i][$y] == $scope_tokens_p[$z][$x]){
+		if ($scope_words_g[$i][$y] eq $scope_words_p[$z][$x]){
+		  $found_scope_token = 1;
+		  
+		}
+		last;
+	      }
+	    } #for x
+	    
+	    if ($found_scope_token == 1){
+	      $tp_scope_tokens++;
+	    } else {
+	      $fn_scope_tokens++;
+	    }
+	    
+	  }#for y
+	  
+
+	  ## iterate over system tokens to find fp
+	  for ($x=0;$x<=$max_scope_tokens_p;$x++){
+	    $found_scope_token = 0;
+	    for ($y=0;$y<=$max_scope_tokens_g;$y++){
+	      if ($scope_tokens_g[$i][$y] == $scope_tokens_p[$z][$x]){
+		if ($scope_words_g[$i][$y] eq $scope_words_p[$z][$x]){
+		  $found_scope_token = 1;
+		}
+		last;
+	      }
+	    } #for y
+	    
+	    if ($found_scope_token == 0){
+	      $fp_scope_tokens++;
+	    }
+
+	    
+	  }#for x
+
+
+
 
 	## check whether full negation is correct
 	if ($st_neg_tokens_g ne "" && $st_neg_tokens_g eq  $st_neg_tokens_p  && $st_neg_words_g eq  $st_neg_words_p && $st_scope_tokens_g eq $st_scope_tokens_p && $st_scope_words_g eq $st_scope_words_p && $st_negated_tokens_g eq $st_negated_tokens_p && $st_negated_words_g eq $st_negated_words_p){
@@ -909,6 +1047,7 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 	## iteration on system negations has finished and gold negation has not been found 
       } elsif ($z==$max_negs_p){
 
+
 	$error_found = 1;
 
 
@@ -917,6 +1056,9 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 	}
 	if ($st_scope_tokens_g ne "" ){
 	  $fn_scope++;
+	  for ($y=0;$y<=$#{$scope_tokens_g[$i]};$y++){
+	    $fn_scope_tokens++;
+	  }
 	}
 	if ($st_negated_tokens_g ne ""){
 	  $fn_negated++;
@@ -924,6 +1066,361 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 
 	$fn_full_negation++;
       }
+
+
+    }##for $z
+    
+  }##for $i
+
+
+  ### iterate over negations in system; if they are not found in gold, then count false positives
+ 
+   
+  #$z iterates over negations in system
+  for ($z=0;$z<=$max_negs_p;$z++){
+
+    ## $i iterates over negations in gold
+    for ($i=0;$i<=$max_negs_g;$i++){
+      
+	## udpate variables with the string of the negation cue 
+	## in system
+	
+	if (@{$neg_words_p[$z]}){
+	  $st_neg_words_p = join(" ",@{$neg_words_p[$z]});
+	} else {
+	  $st_neg_words_p = "";
+	}
+
+	if (@{$scope_words_p[$z]}){
+	  $st_scope_words_p = join(" ",@{$scope_words_p[$z]});
+	} else {
+	  $st_scope_words_p = "";
+	}
+
+	if (@{$negated_words_p[$z]}){
+	  $st_negated_words_p = join(" ",@{$negated_words_p[$z]});
+	} else {
+	  $st_negated_words_p = "";
+	}
+
+	
+	if (@{$neg_tokens_p[$z]}){
+	  $st_neg_tokens_p = join(" ",@{$neg_tokens_p[$z]});
+	} else {
+	  $st_neg_tokens_p = "";
+	}
+
+	if (@{$scope_tokens_p[$z]}){
+	  $st_scope_tokens_p = join(" ",@{$scope_tokens_p[$z]});
+	} else {
+	  $st_scope_tokens_p = "";
+	}
+
+	if (@{$negated_tokens_p[$z]}){
+	  $st_negated_tokens_p = join(" ",@{$negated_tokens_p[$z]});
+	} else {
+	  $st_negated_tokens_p = "";
+	}
+
+	
+	$max_neg_tokens_p = $#{$neg_tokens_p[$z]};
+	$max_neg_tokens_g = $#{$neg_tokens_g[$i]};
+
+	$found =0;
+
+	for ($x=0;$x<=$max_neg_tokens_p;$x++){
+	  for ($y=0;$y<=$max_neg_tokens_g;$y++){    
+	    if ($neg_tokens_g[$i][$y] == $neg_tokens_p[$z][$x]){
+	      $found = 1;
+	      last;
+	    }
+	  } #for x
+	}#for y
+	
+    
+
+      ##negation in system is found in gold
+      ## this has been treated above 
+ 	if ($found ==1){
+	  last;
+	  
+	  
+	  ## negation in system is not found in gold
+	} elsif ($i == $max_negs_g ){
+	  
+	  $error_found = 1;
+	  
+	  if ($st_neg_tokens_p ne "" ){
+	    $fp_cue++;
+	  }
+	  if ($st_scope_tokens_p ne "" ){
+	    $fp_scope++;
+	    for ($y=0;$y<=$#{$scope_tokens_p[$z]};$y++){
+	      $fp_scope_tokens++;
+	    }
+	  }
+	  if ($st_negated_tokens_p ne ""){
+	    $fp_negated++;
+	  }
+	  
+	  
+	  $fp_full_negation++;
+	  
+	  
+	}
+	
+      }##for $i
+    
+  }##for $z
+  
+  
+####################################################
+##  gold doesn't have negations and system has
+####################################################
+
+}  elsif ($zero_negs_g eq "yes" && $zero_negs_p eq "no") {
+
+ 
+  
+  	    $error_found = 1;
+	   
+   for ($z=0;$z<=$max_negs_p;$z++){
+
+	if (@{$neg_tokens_p[$z]}){
+	 $fp_cue++;
+	}
+
+	if (@{$scope_tokens_p[$z]}){
+	  $fp_scope++;
+	  for ($y=0;$y<=$#{$scope_tokens_p[$z]};$y++){
+	     $fp_scope_tokens++;
+	  }
+	}
+	
+	if (@{$negated_tokens_p[$z]}){
+	 $fp_negated++;
+	 	}
+
+	$fp_full_negation++;
+
+   }
+   
+ }
+
+
+
+update_counts_for_negated_apart();
+update_counts_for_scope_apart();
+
+
+} ## end sub
+
+#######################################################
+###### update counts for scope apart from negation cues
+#######################################################
+
+sub update_counts_for_scope_apart {
+
+
+####################################################
+## gold has negations in sentence, system has
+## not found negations in sentence
+####################################################
+if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
+
+   
+   for ($i=0;$i<=$max_negs_g;$i++){
+
+	if (@{$scope_tokens_g[$i]}){
+	     $fn_scope_apart++;	
+	}
+
+	if (@{$scope_tokens_nopunc_g[$i]}){
+	     $fn_scope_nopunc++;	
+	}
+
+     
+   }
+
+
+####################################################
+## gold and system have negations in sentence
+####################################################
+
+} elsif ($zero_negs_g eq "no" && $zero_negs_p eq "no"){
+
+ 
+  ## $i iterates over negations in gold
+  for ($i=0;$i<=$max_negs_g;$i++){
+
+   
+
+    #$z iterates over negations in system
+    for ($z=0;$z<=$max_negs_p;$z++){
+
+    
+	## udpate variables with the string of negation cue, scope and negated
+	## in gold
+	
+	if (@{$neg_words_g[$i]}){
+	  $st_neg_words_g = join(" ",@{$neg_words_g[$i]});
+	} else {
+	  $st_neg_words_g = "";
+	}
+	
+	if (@{$scope_words_g[$i]}){
+	  $st_scope_words_g = join(" ",@{$scope_words_g[$i]});
+	} else {
+	  $st_scope_words_g = "";
+	}
+
+	if (@{$scope_words_nopunc_g[$i]}){
+	  $st_scope_words_nopunc_g = join(" ",@{$scope_words_nopunc_g[$i]});
+	} else {
+	  $st_scope_words_nopunc_g = "";
+	}
+	
+	if (@{$neg_tokens_g[$i]}){
+	  $st_neg_tokens_g = join(" ",@{$neg_tokens_g[$i]});
+	} else {
+	  $st_neg_tokens_g = "";
+	}
+
+	if (@{$scope_tokens_g[$i]}){
+	  $st_scope_tokens_g = join(" ",@{$scope_tokens_g[$i]});
+	} else {
+	  $st_scope_tokens_g = "";
+	}
+
+
+	if (@{$scope_tokens_nopunc_g[$i]}){
+	  $st_scope_tokens_nopunc_g = join(" ",@{$scope_tokens_nopunc_g[$i]});
+	} else {
+	  $st_scope_tokens_nopunc_g = "";
+	}
+
+
+	## udpate variables with the string of negation cue, scope and negated
+	## in system
+	
+	if (@{$neg_words_p[$z]}){
+	  $st_neg_words_p = join(" ",@{$neg_words_p[$z]});
+	} else {
+	  $st_neg_words_p = "";
+	}
+
+	if (@{$scope_words_p[$z]}){
+	  $st_scope_words_p = join(" ",@{$scope_words_p[$z]});
+	} else {
+	  $st_scope_words_p = "";
+	}
+
+	if (@{$scope_words_nopunc_p[$z]}){
+	  $st_scope_words_nopunc_p = join(" ",@{$scope_words_nopunc_p[$z]});
+	} else {
+	  $st_scope_words_nopunc_p = "";
+	}
+
+	if (@{$neg_tokens_p[$z]}){
+	  $st_neg_tokens_p = join(" ",@{$neg_tokens_p[$z]});
+	} else {
+	  $st_neg_tokens_p = "";
+	}
+	if (@{$scope_tokens_p[$z]}){
+	  $st_scope_tokens_p = join(" ",@{$scope_tokens_p[$z]});
+	} else {
+	  $st_scope_tokens_p = "";
+	}
+
+	if (@{$scope_tokens_nopunc_p[$z]}){
+	  $st_scope_tokens_nopunc_p = join(" ",@{$scope_tokens_nopunc_p[$z]});
+	} else {
+	  $st_scope_tokens_nopunc_p = "";
+	}
+
+
+	$max_neg_tokens_p = $#{$neg_tokens_p[$z]};
+	$max_neg_tokens_g = $#{$neg_tokens_g[$i]};
+
+	
+	$found = 0;
+
+
+	for ($y=0;$y<=$max_neg_tokens_g;$y++){
+	  for ($x=0;$x<=$max_neg_tokens_p;$x++){
+
+	    if ($neg_tokens_g[$i][$y] == $neg_tokens_p[$z][$x]){
+	      $found = 1;
+	      last;
+	    }
+	  } #for x
+	}#for y
+	
+    
+	## if a negation in gold is also found in system
+	if ($found ==1){
+
+  
+	  ########### scope apart #####################
+	  # if no scope was marked for this cue in gold, and system marks it, then it is fp
+	  if ($st_scope_tokens_g eq "" && $st_scope_tokens_p ne ""){
+	    $fp_scope_apart++;
+	    
+	    
+	    ##scope is correctly identified: boh the token numbers and the words or parts of words
+	    ## cue needs to have been correctly identified for scope to be counted as correct
+	  } elsif ($st_scope_tokens_g ne "" && $st_scope_tokens_g eq $st_scope_tokens_p && $st_scope_words_g eq $st_scope_words_p){
+	    $tp_scope_apart++;
+
+	    
+	    ## gold marks a scope, in system either the tokens or words are incorrect
+	  } elsif ($st_scope_tokens_g ne "" && ($st_scope_tokens_p ne $st_scope_tokens_g || $st_scope_words_p ne $st_scope_words_g)) {
+	    $fn_scope_apart++;
+	  
+	    
+	  } 
+	  
+
+	  ########### scope no punctuation #####################
+	  # if no scope was marked for this cue in gold, and system marks it, then it is fp
+	  if ($st_scope_tokens_nopunc_g eq "" && $st_scope_tokens_nopunc_p ne ""){
+	    $fp_scope_nopunc++;
+	    
+	    
+	    ##scope is correctly identified: boh the token numbers and the words or parts of words
+	    ## cue needs to have been correctly identified for scope to be counted as correct
+	  } elsif ($st_scope_tokens_nopunc_g ne "" && $st_scope_tokens_nopunc_g eq $st_scope_tokens_nopunc_p && $st_scope_words_nopunc_g eq $st_scope_words_nopunc_p){
+	    $tp_scope_nopunc++;
+
+	    
+	    ## gold marks a scope, in system either the tokens or words are incorrect
+	  } elsif ($st_scope_tokens_nopunc_g ne "" && ($st_scope_tokens_nopunc_p ne $st_scope_tokens_nopunc_g || $st_scope_words_nopunc_p ne $st_scope_words_nopunc_g)) {
+	    $fn_scope_nopunc++;
+	    
+	  } 
+
+	  
+       	## gold negation found in system negations; search in system negations stops
+	last;
+
+	
+	## iteration on system negations has finished and gold negation has not been found 
+      } elsif ($z==$max_negs_p ){
+
+
+ 	if ($st_scope_tokens_g ne "" ){
+ 	  $fn_scope_apart++;
+ 	}
+
+	if ($st_scope_tokens_nopunc_g ne "" ){
+ 	  $fn_scope_nopunc++;
+	}
+
+		
+      }
+
+
+
     }##for $z
     
   }##for $i
@@ -953,6 +1450,14 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 	} else {
 	  $st_scope_words_p = "";
 	}
+
+	if (@{$scope_words_nopunc_p[$z]}){
+	  $st_scope_words_nopunc_p = join(" ",@{$scope_words_nopunc_p[$z]});
+	} else {
+	  $st_scope_words_nopunc_p = "";
+	}
+
+
 	if (@{$negated_words_p[$z]}){
 	  $st_negated_words_p = join(" ",@{$negated_words_p[$z]});
 	} else {
@@ -964,11 +1469,19 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 	} else {
 	  $st_neg_tokens_p = "";
 	}
+
 	if (@{$scope_tokens_p[$z]}){
 	  $st_scope_tokens_p = join(" ",@{$scope_tokens_p[$z]});
 	} else {
 	  $st_scope_tokens_p = "";
 	}
+
+	if (@{$scope_tokens_nopunc_p[$z]}){
+	  $st_scope_tokens_nopunc_p = join(" ",@{$scope_tokens_nopunc_p[$z]});
+	} else {
+	  $st_scope_tokens_nopunc_p = "";
+	}
+
 	if (@{$negated_tokens_p[$z]}){
 	  $st_negated_tokens_p = join(" ",@{$negated_tokens_p[$z]});
 	} else {
@@ -1000,28 +1513,24 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
       ## negation in system is not found in gold
       } elsif ($i == $max_negs_g ){
 
-	 $error_found = 1;
-
-
-	if ($st_neg_tokens_p ne "" ){
-	  $fp_cue++;
-	}
+	
 	if ($st_scope_tokens_p ne "" ){
-	  $fp_scope++;
+	  $fp_scope_apart++;
+	}
 
+	if ($st_scope_tokens_nopunc_p ne "" ){
+	  $fp_scope_nopunc++;
+	 
 	}
-	if ($st_negated_tokens_p ne ""){
-	  $fp_negated++;
-	}
+
 
 	
-	$fp_full_negation++;
-
- 
        }
     }##for $i
     
   }##for $z
+
+  
   
 
 ####################################################
@@ -1030,34 +1539,25 @@ if ($zero_negs_g eq "no" && $zero_negs_p eq "yes"){
 
 }  elsif ($zero_negs_g eq "yes" && $zero_negs_p eq "no") {
 
+  	     
+  for ($z=0;$z<=$max_negs_p;$z++){
+    
+    
+    if (@{$scope_tokens_p[$z]}){
+      $fp_scope_apart++;
+      
+    }
+    
+    if (@{$scope_tokens_nopunc_p[$z]}){
+      $fp_scope_nopunc++;  
+    }
+    
+  }
   
-  	    $error_found = 1;
-	   
+}
+  
 
-   for ($z=0;$z<=$max_negs_p;$z++){
-
-	if (@{$neg_tokens_p[$z]}){
-	 $fp_cue++;
-	}
-
-	if (@{$scope_tokens_p[$z]}){
-	  $fp_scope++;
-	  	}
-
-	if (@{$negated_tokens_p[$z]}){
-	 $fp_negated++;
-	 	}
-
-	$fp_full_negation++;
-
-   }
-   
- }
-
-update_counts_for_negated_apart();
-
-
-} ## end sub
+}
 
 #######################################################
 ###### update counts for negated apart from negation cues
@@ -1428,8 +1928,7 @@ while(<GOLD>) {
   
   ### if line is blank or if end of file is reached
   ### process sentence 
-  if ($tmp_lineg eq "" || eof(SYSTEM)){
-
+  if ($tmp_lineg eq "" || eof(SYSTEM) || eof(GOLD)){
     
     process_sentence();
     update_counts_for_eval();
@@ -1445,6 +1944,8 @@ while(<GOLD>) {
     ###################################
     ## initialize variables 
     ## before processing next sentence
+    @POS = ();
+
     @neg_cols_g = ();
     @neg_cols_p = ();
 
@@ -1454,10 +1955,12 @@ while(<GOLD>) {
     
     @neg_words_g = ();
     @scope_words_g = ();
+    @scope_words_nopunc_g = ();
     @negated_words_g = ();
     
     @neg_tokens_g = ();
     @scope_tokens_g = ();
+    @scope_tokens_nopunc_g = ();
     @negated_tokens_g = ();
     
 
@@ -1467,10 +1970,12 @@ while(<GOLD>) {
     
     @neg_words_p = ();
     @scope_words_p = ();
+    @scope_words_nopunc_p = ();
     @negated_words_p = ();
     
     @neg_tokens_p = ();
     @scope_tokens_p = ();
+    @scope_tokens_nopunc_p = ();
     @negated_tokens_p = ();
 
 
@@ -1490,39 +1995,196 @@ while(<GOLD>) {
 
 ######### calculate F measures
 
-my $precision_cue = sprintf("%.2f",($tp_cue / ($tp_cue + $fp_cue)) * 100);
-my $recall_cue =  sprintf("%.2f",($tp_cue / ($tp_cue + $fn_cue)) * 100);
-my $f1_cue =   sprintf("%.2f",(2 * $precision_cue * $recall_cue) / ($precision_cue + $recall_cue));
+my $precision_cue;
+my $recall_cue;
+my $f1_cue;
 
-my $precision_scope = sprintf("%.2f",($tp_scope / ($tp_scope + $fp_scope)) * 100 );
-my $recall_scope = sprintf("%.2f",($tp_scope / ($tp_scope + $fn_scope)) * 100);
-my $f1_scope =  sprintf("%.2f",(2 * $precision_scope * $recall_scope) / ($precision_scope + $recall_scope));
+my $precision_scope;
+my $recall_scope;
+my $f1_scope;
 
-my $precision_negated_apart = sprintf("%.2f",($tp_negated_apart / ($tp_negated_apart + $fp_negated_apart)) * 100);
-my $recall_negated_apart = sprintf("%.2f",($tp_negated_apart / ($tp_negated_apart + $fn_negated_apart)) * 100);
-my $f1_negated_apart = sprintf("%.2f", (2 * $precision_negated_apart * $recall_negated_apart) / ($precision_negated_apart + $recall_negated_apart));
+my $precision_scope_tokens;
+my $recall_scope_tokens;
+my $f1_scope_tokens;
 
-my $precision_full_negation = sprintf("%.2f",($tp_full_negation / ($tp_full_negation + $fp_full_negation)) * 100);
-my $recall_full_negation = sprintf("%.2f",($tp_full_negation / ($tp_full_negation + $fn_full_negation)) * 100);
-my $f1_full_negation = sprintf("%.2f", (2 * $precision_full_negation * $recall_full_negation) / ($precision_full_negation + $recall_full_negation));
 
-my $perc_error_sentences =  sprintf("%.2f",($count_error_sentences * 100) /  $count_sentences);
-my $perc_error_negation_sentences =  sprintf("%.2f",($count_error_sentences_negation * 100) /  $count_sentences_negation);
-my $perc_correct_sentences = sprintf("%.2f",100 - $perc_error_sentences);
-my $perc_correct_negation_sentences = sprintf("%.2f",100 - $perc_error_negation_sentences);
+my $precision_negated_apart;
+my $recall_negated_apart;
+my $f1_negated_apart;
+
+my $precision_scope_apart;
+my $recall_scope_apart;
+my $f1_scope_apart;
+
+
+my $precision_scope_nopunc;
+my $recall_scope_nopunc;
+my $f1_scope_nopunc;
+
+my $precision_full_negation;
+my $recall_full_negation;
+my $f1_full_negation;
+
+my $perc_error_sentences;
+my $perc_error_negation_sentences;
+my $perc_correct_sentences;
+my $perc_correct_negation_sentences;
+
+####### cues
+if ($tp_cue + $fp_cue){
+   $precision_cue = sprintf("%.2f",($tp_cue / ($tp_cue + $fp_cue)) * 100);
+ } else {
+   $precision_cue = sprintf("%.2f",0.00);
+ }
+if ($tp_cue + $fn_cue){
+  $recall_cue =  sprintf("%.2f",($tp_cue / ($tp_cue + $fn_cue)) * 100);
+} else {
+  $recall_cue = sprintf("%.2f",0.00);
+}
+
+if ($precision_cue + $recall_cue){
+  $f1_cue =   sprintf("%.2f",(2 * $precision_cue * $recall_cue) / ($precision_cue + $recall_cue));
+} else {
+  $f1_cue = sprintf("%.2f",0.00);
+}
+
+###### scopes
+
+if ($tp_scope + $fp_scope){
+  $precision_scope = sprintf("%.2f",($tp_scope / ($tp_scope + $fp_scope)) * 100 );
+} else {
+  $precision_scope = sprintf("%.2f",0.00);
+}
+if ($tp_scope + $fn_scope){
+  $recall_scope = sprintf("%.2f",($tp_scope / ($tp_scope + $fn_scope)) * 100);
+} else {
+  $recall_scope =sprintf("%.2f",0.00);
+}
+if ($precision_scope + $recall_scope){
+  $f1_scope =  sprintf("%.2f",(2 * $precision_scope * $recall_scope) / ($precision_scope + $recall_scope));
+} else {
+  $f1_scope =  sprintf("%.2f",0.00);
+}
+
+
+###### scopes apart
+
+if ($tp_scope_apart + $fp_scope_apart){
+  $precision_scope_apart = sprintf("%.2f",($tp_scope_apart / ($tp_scope_apart + $fp_scope_apart)) * 100 );
+} else {
+  $precision_scope_apart = sprintf("%.2f",0.00);
+}
+if ($tp_scope_apart + $fn_scope_apart){
+  $recall_scope_apart = sprintf("%.2f",($tp_scope_apart / ($tp_scope_apart + $fn_scope_apart)) * 100);
+} else {
+  $recall_scope_apart =sprintf("%.2f",0.00);
+}
+if ($precision_scope_apart + $recall_scope_apart){
+  $f1_scope_apart =  sprintf("%.2f",(2 * $precision_scope_apart * $recall_scope_apart) / ($precision_scope_apart + $recall_scope_apart));
+} else {
+  $f1_scope_apart =  sprintf("%.2f",0.00);
+}
+
+###### scopes nopunc
+
+if ($tp_scope_nopunc + $fp_scope_nopunc){
+  $precision_scope_nopunc = sprintf("%.2f",($tp_scope_nopunc / ($tp_scope_nopunc + $fp_scope_nopunc)) * 100 );
+} else {
+  $precision_scope_nopunc = sprintf("%.2f",0.00);
+}
+if ($tp_scope_nopunc + $fn_scope_nopunc){
+  $recall_scope_nopunc = sprintf("%.2f",($tp_scope_nopunc / ($tp_scope_nopunc + $fn_scope_nopunc)) * 100);
+} else {
+  $recall_scope_nopunc =sprintf("%.2f",0.00);
+}
+if ($precision_scope_nopunc + $recall_scope_nopunc){
+  $f1_scope_nopunc =  sprintf("%.2f",(2 * $precision_scope_nopunc * $recall_scope_nopunc) / ($precision_scope_nopunc + $recall_scope_nopunc));
+} else {
+  $f1_scope_nopunc =  sprintf("%.2f",0.00);
+}
+
+
+###### scope tokens
+if ($tp_scope_tokens + $fp_scope_tokens) {
+  $precision_scope_tokens = sprintf("%.2f",($tp_scope_tokens / ($tp_scope_tokens + $fp_scope_tokens)) * 100 );
+} else {
+  $precision_scope_tokens = sprintf("%.2f",0.00);
+}
+
+if ($tp_scope_tokens + $fn_scope_tokens){
+  $recall_scope_tokens = sprintf("%.2f",($tp_scope_tokens / ($tp_scope_tokens + $fn_scope_tokens)) * 100);
+} else {
+  $recall_scope_tokens = sprintf("%.2f",0.00);
+}
+
+if ($precision_scope_tokens + $recall_scope_tokens){
+$f1_scope_tokens =  sprintf("%.2f",(2 * $precision_scope_tokens * $recall_scope_tokens) / ($precision_scope_tokens + $recall_scope_tokens));
+} else {
+$f1_scope_tokens = sprintf("%.2f",0.00);
+}
+
+
+###### negated apart
+if ($tp_negated_apart + $fp_negated_apart){
+$precision_negated_apart = sprintf("%.2f",($tp_negated_apart / ($tp_negated_apart + $fp_negated_apart)) * 100);
+} else {
+$precision_negated_apart = sprintf("%.2f",0.00);
+}
+if ($tp_negated_apart + $fn_negated_apart){
+$recall_negated_apart = sprintf("%.2f",($tp_negated_apart / ($tp_negated_apart + $fn_negated_apart)) * 100);
+} else {
+$recall_negated_apart = sprintf("%.2f",0.00);
+}
+if ($precision_negated_apart + $recall_negated_apart){
+  $f1_negated_apart = sprintf("%.2f", (2 * $precision_negated_apart * $recall_negated_apart) / ($precision_negated_apart + $recall_negated_apart));
+} else {
+  $f1_negated_apart = sprintf("%.2f",0.00);
+}
+
+
+##### full negation
+if ($tp_full_negation + $fp_full_negation){
+$precision_full_negation = sprintf("%.2f",($tp_full_negation / ($tp_full_negation + $fp_full_negation)) * 100);
+} else {
+$precision_full_negation = sprintf("%.2f",0.00);
+}
+
+if ($tp_full_negation + $fn_full_negation){
+$recall_full_negation = sprintf("%.2f",($tp_full_negation / ($tp_full_negation + $fn_full_negation)) * 100);
+} else {
+$recall_full_negation = sprintf("%.2f",0.00);
+}
+
+if ($precision_full_negation + $recall_full_negation){
+$f1_full_negation = sprintf("%.2f", (2 * $precision_full_negation * $recall_full_negation) / ($precision_full_negation + $recall_full_negation));
+} else {
+$f1_full_negation =sprintf("%.2f",0.00);
+}
+
+
+##### percentage sentences
+
+$perc_error_sentences =  sprintf("%.2f",($count_error_sentences * 100) /  $count_sentences);
+$perc_error_negation_sentences =  sprintf("%.2f",($count_error_sentences_negation * 100) /  $count_sentences_negation);
+$perc_correct_sentences = sprintf("%.2f",100 - $perc_error_sentences);
+$perc_correct_negation_sentences = sprintf("%.2f",100 - $perc_error_negation_sentences);
+
 
 ######### print results
 
-print "------------+------+--------+-----+-----+-----+---------------+------------+---------\n";
-print "            | gold | system | tp  | fp  | fn  | precision (%) | recall (%) | F1  (%) \n";
-print "------------+------+--------+-----+-----+-----+---------------+------------+---------\n";
+print "---------------------------+------+--------+------+------+------+---------------+------------+---------\n";
+print "                            | gold | system | tp   | fp   | fn   | precision (%) | recall (%) | F1  (%) \n";
+print "----------------------------+------+--------+------+------+------+---------------+------------+---------\n";
 
 
-printf ("Cues: %12d | %6d | %3d | %3d | %3d | %13s | %10s | %7s\n",  $cues_g, $cues_p, $tp_cue, $fp_cue, $fn_cue,  $precision_cue, $recall_cue, $f1_cue);
-printf ("Scope: %11d | %6d | %3d | %3d | %3d | %13s | %10s | %7s\n",  $scopes_g, $scopes_p, $tp_scope, $fp_scope, $fn_scope,  $precision_scope, $recall_scope, $f1_scope);
-printf ("Negated: %9d | %6d | %3d | %3d | %3d | %13s | %10s | %7s\n",  $negated_g, $negated_p, $tp_negated_apart, $fp_negated_apart, $fn_negated_apart,  $precision_negated_apart, $recall_negated_apart, $f1_negated_apart);
-printf ("Full negation: %3d | %6d | %3d | %3d | %3d | %13s | %10s | %7s\n",  $cues_g, $cues_p, $tp_full_negation, $fp_full_negation, $fn_full_negation,  $precision_full_negation, $recall_full_negation, $f1_full_negation);
-print "------------+------+--------+-----+-----+-----+---------------+------------+---------\n";
+printf ("Cues: %28d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $cues_g, $cues_p, $tp_cue, $fp_cue, $fn_cue,  $precision_cue, $recall_cue, $f1_cue);
+printf ("Scopes(cue match): %15d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $scopes_g, $scopes_p, $tp_scope, $fp_scope, $fn_scope,  $precision_scope, $recall_scope, $f1_scope);
+printf ("Scopes(no cue match): %12d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $scopes_g, $scopes_p, $tp_scope, $fp_scope_apart, $fn_scope_apart,  $precision_scope_apart, $recall_scope_apart, $f1_scope_apart);
+printf ("Scopes(no cue match, no punc): %3d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $scopes_g, $scopes_p, $tp_scope, $fp_scope_nopunc, $fn_scope_nopunc,  $precision_scope_nopunc, $recall_scope_nopunc, $f1_scope_nopunc);
+printf ("Scope tokens(no cue match): %6d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $total_scope_tokens_g, $total_scope_tokens_p, $tp_scope_tokens, $fp_scope_tokens, $fn_scope_tokens, $precision_scope_tokens, $recall_scope_tokens, $f1_scope_tokens);
+printf ("Negated(no cue match): %11d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $negated_g, $negated_p, $tp_negated_apart, $fp_negated_apart, $fn_negated_apart,  $precision_negated_apart, $recall_negated_apart, $f1_negated_apart);
+printf ("Full negation: %19d | %6d | %4d | %4d | %4d | %13s | %10s | %7s\n",  $cues_g, $cues_p, $tp_full_negation, $fp_full_negation, $fn_full_negation,  $precision_full_negation, $recall_full_negation, $f1_full_negation);
+print "---------------------------+------+--------+------+------+------+---------------+------------+---------\n";
 print " # sentences: $count_sentences\n";
 print " # negation sentences: $count_sentences_negation\n";
 print " # negation sentences with errors: $count_error_sentences_negation\n";
@@ -1530,7 +2192,7 @@ print " # negation sentences with errors: $count_error_sentences_negation\n";
 print " % correct sentences: $perc_correct_sentences\n";
 print " % correct negation sentences: $perc_correct_negation_sentences\n";
 
-print "-------------------------------------------------------------------------------------\n"; 
+print "--------------------------------------------------------------------------------------------------------\n"; 
 
 
 
