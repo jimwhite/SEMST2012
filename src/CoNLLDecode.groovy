@@ -182,6 +182,71 @@ static def sexp_escape(String s)
     s
 }
 
+    def tree_to_mallet_sequence(File tree_infile, File outfile)
+    {
+        outfile.withPrintWriter { printer ->
+            tree_infile.withReader { reader ->
+                def line = new StringBuilder()
+
+                def cint
+
+                while ((cint = reader.read()) >= 0) {
+                    Character c = cint
+                    if (c == '(') {
+                        def sexp = readSexpList(reader)
+
+                        def cue_path = path_to_cue(sexp)
+//                        println cue_path
+                        if (cue_path) {
+                            printSequences(sexp, cue_path, [], printer)
+                            printer.println()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    def printSequences(Object tree, List cue_up_path, List cue_down_path, PrintWriter printer)
+    {
+        if (tree instanceof List) {
+            if (tree[0] == 'token') {
+                def cue = cue_up_path[0]
+
+                def up_path = cue_up_path.tail().collect { it[0] }.join('_')
+                def down_path = cue_down_path.collect { it[0] }.join('_')
+
+                def label = (tree[5] == '_') ? tree[6] : '!'
+
+                def instance = [
+                        'pos_' + tree[2], 'word_' + tree[3], 'lemma_' + tree[4]
+                        , 'distance=' + (tree[8] as Integer) - (cue[8] as Integer)  // Good for ~2% acc
+                        , 'cue_word_' + cue[3].toLowerCase(), 'cue_lemma_' + cue[4], 'cue_pos_' + cue[2]
+                        , 'up_' + up_path    // Good for ~6% acc
+                        , 'down_' + down_path  // Hurts ~4% when up_ is present.
+                        , label
+                ]
+                
+                if (tree[5] != '_')  instance = ["is_cue"] + instance
+
+                // cc.mallet.fst.SimpleTagger says "whitespace" but what they mean is space.
+//                    printer.println (instance.join('\t'))
+                printer.println (instance.join(' '))
+            } else {
+                if (tree.is(cue_up_path[-1])) {
+                    cue_up_path = cue_up_path[0..-2]
+                } else {
+                    cue_down_path = cue_down_path + [tree]
+                }
+
+                tree.each {
+                    printSequences(it, cue_up_path, cue_down_path, printer)
+                }
+            }
+        }
+    }
+
+
 def tree_to_mallet(File tree_infile, File outfile)
 {
     outfile.withPrintWriter { printer ->

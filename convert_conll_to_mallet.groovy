@@ -19,7 +19,10 @@ dev_scope_file = new File(data_dir, 'dev.scope.txt')
 train_scope_output = new File(data_dir, "output.train.scope.txt")
 dev_scope_output = new File(data_dir, "output.dev.scope.txt")
 
-prepare_data = false
+//scope_classifier = new File(data_dir, "scope_max_ent.classifier")
+scope_classifier = new File(data_dir, "scope.model")
+
+prepare_data = true
 
 if (prepare_data) {
     def decoder = new CoNLLDecode()
@@ -30,8 +33,11 @@ if (prepare_data) {
     decoder.convert_to_trees(train_file, train_trees_file)
     decoder.convert_to_trees(dev_file, dev_trees_file)
 
-    decoder.tree_to_mallet(train_trees_file, train_scope_file)
-    decoder.tree_to_mallet(dev_trees_file, dev_scope_file)
+//    decoder.tree_to_mallet(train_trees_file, train_scope_file)
+//    decoder.tree_to_mallet(dev_trees_file, dev_scope_file)
+
+    decoder.tree_to_mallet_sequence(train_trees_file, train_scope_file)
+    decoder.tree_to_mallet_sequence(dev_trees_file, dev_scope_file)
 }
 
 /*
@@ -47,22 +53,40 @@ if (prepare_data) {
  mallet classify-file --input data/split_test.up_scope.txt --output - --classifier up_scope_max_ent.classifier
   */
 
-def train_scope_vectors_process = ["mallet", "import-file", "--input", train_scope_file
-        , "--output", train_scope_vectors].execute()
-println "train_scope_vectors_process = ${train_scope_vectors_process.waitFor()}"
+//def train_scope_vectors_process = ["mallet", "import-file", "--input", train_scope_file
+//        , "--output", train_scope_vectors].execute()
+//println "train_scope_vectors_process = ${train_scope_vectors_process.waitFor()}"
+//
+//def train_scope_classifier_process = ["mallet", "train-classifier", "--input", train_scope_vectors
+//        , "--trainer", "MaxEnt", "--output-classifier", scope_classifier].execute()
+//println "train_scope_classifier_process = ${train_scope_classifier_process.waitFor()}"
+//
+//def classify_train_scope_process = ["mallet", "classify-file", "--input", train_scope_file
+//        , "--classifier", scope_classifier, "--output", train_scope_output].execute()
+//println "classify_train_scope_process = ${classify_train_scope_process.waitFor()}"
+//
+//def classify_dev_scope_process = ["mallet", "classify-file", "--input", dev_scope_file
+//        , "--classifier", scope_classifier, "--output", dev_scope_output].execute()
+//println "classify_dev_scope_process = ${classify_dev_scope_process.waitFor()}"
+//
 
-scope_classifier = new File(data_dir, "scope_max_ent.classifier")
+//println simple_train_simple_tagger(train_scope_file, scope_classifier)
 
-def train_scope_classifier_process = ["mallet", "train-classifier", "--input", train_scope_vectors
-        , "--trainer", "MaxEnt", "--output-classifier", scope_classifier].execute()
-println "train_scope_classifier_process = ${train_scope_classifier_process.waitFor()}"
+def simple_train_simple_tagger(File input_file, File model_file)
+{
+    // cc.mallet.fst.SimpleTagger --train true --model-file nouncrf  sample
+    def proc = ["java", "-cp", "/opt/local/share/java/mallet-2.0.7/dist/mallet.jar:/opt/local/share/java/mallet-2.0.7/dist/mallet-deps.jar"
+                , "cc.mallet.fst.SimpleTagger", "--train", "true", "--model-file", model_file, input_file].execute()
 
-def classify_train_scope_process = ["mallet", "classify-file", "--input", train_scope_file
-        , "--classifier", scope_classifier, "--output", train_scope_output].execute()
-println "classify_train_scope_process = ${classify_train_scope_process.waitFor()}"
+    return proc.waitFor()
+}
 
-def classify_dev_scope_process = ["mallet", "classify-file", "--input", dev_scope_file
-        , "--classifier", scope_classifier, "--output", dev_scope_output].execute()
-println "classify_dev_scope_process = ${classify_dev_scope_process.waitFor()}"
+def simple_simple_tagger(File model_file, File input_file)
+{
+    // cc.mallet.fst.SimpleTagger --train true --model-file nouncrf  sample
+    def proc = ["java", "-cp", "/opt/local/share/java/mallet-2.0.7/dist/mallet.jar:/opt/local/share/java/mallet-2.0.7/dist/mallet-deps.jar"
+            , "cc.mallet.fst.SimpleTagger", "--train", "true", "--model-file", model_file, input_file].execute()
 
+    return proc.waitFor()
+}
 
