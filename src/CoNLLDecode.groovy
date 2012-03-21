@@ -140,13 +140,30 @@ def convert_to_trees(File dev_file, File out_file)
                 negated_scope_count.times { scope_i ->
                     def sexp = new StringBuilder(tokens.size() * 20)
 
-                    tokens.each { token ->
+                    def scope_labels = tokens.collect { it.labels[(scope_i * 3)..<((scope_i + 1) * 3)] }
+                    
+                    def start_scope_x = scope_labels.findIndexOf { it[1] != '_' }
+                    def end_scope_x = scope_labels.findLastIndexOf { it[1] != '_' }
+
+                    tokens.eachWithIndex { token, token_i ->
                         String id = token.with { chap_name + '/' + sent_indx + '/' + scope_i + '/' + tok_indx }
 
-                        def scope_labels = token.labels[(scope_i * 3)..<((scope_i + 1) * 3)]
-
                         token.with {
-                            sexp.append(syntax.replace('*', " (token $id ${sexp_escape(pos)} ${sexp_escape(word)} ${sexp_escape(lemma)} ${scope_labels[0]} ${scope_labels[1] == '_' ? '-' : '+'} ${scope_labels[2] == '_' ? '-' : '+'} $tok_indx ) "))
+//                            def xsyntax = syntax.replace('(', '<').replace(')', '>')
+//                            def left_syntax = xsyntax.substring(0, syntax.indexOf('*')+1)
+//                            def right_syntax = xsyntax.substring(syntax.indexOf('*'))
+
+                            def sys_scope_label = scope_labels[token_i][1] == '_' ? '-' : '+'
+
+                            if (token_i == start_scope_x) {
+                                sys_scope_label = '['
+                            } else if (token_i == end_scope_x) {
+                                sys_scope_label = ']'
+                            } else if ((sys_scope_label == '-') && (token_i > start_scope_x) && (token_i < end_scope_x)) {
+                                sys_scope_label = '_'
+                            }
+                            
+                            sexp.append(syntax.replace('*', " (token $id ${sexp_escape(pos)} ${sexp_escape(word)} ${sexp_escape(lemma)} ${scope_labels[token_i][0]} ${sys_scope_label} ${scope_labels[token_i][2] == '_' ? '-' : '+'} $tok_indx ) "))
                         }
 
 //                    def cue_label = null
@@ -181,6 +198,70 @@ static def sexp_escape(String s)
     s = s.replace(")", "-RRB-")
     s
 }
+
+    def convert_to_conll(File scope_file, File in_file, File out_file)
+    {
+        out_file.withWriter { printer ->
+            in_file.withReader { reader ->
+                scope_file.withReader { label_reader ->
+
+                    def delimitedReader = new BlankLineTerminatedReader(reader)
+
+                    while (delimitedReader.next()) {
+                        List<String> lines = delimitedReader.readLines()
+                        //     def (chap_name, sent_indx, tok_indx, word, lemma, pos, syntax) = columns
+
+                        def negated_scope_count = (CoNLLDecode.decode_line_to_token(lines[0]).labels.size() / 3) as Integer
+
+                        def sys_labels = [:].withDefault { [:] }
+
+                        negated_scope_count.times { scope_i ->
+                            lines.size().times { token_i ->
+                                def label = label_reader.readLine().trim()
+                                if (!(label in ['+', '-', '!', '[', '_', ']'])) println "Unexpected label: $label $scope_i $token_i ${lines[0]}"
+                                sys_labels[scope_i][token_i] = label
+                            }
+                            def bl = label_reader.readLine().trim()
+                            if (bl != "") println "Label file out of sync! Expected blank line.  Got '$bl'"
+                        }
+
+                        lines.eachWithIndex { line, token_i ->
+                            def token = CoNLLDecode.decode_line_to_token(line)
+
+                            def negated_scope_count_i = (token.labels.size() / 3) as Integer
+
+                            assert negated_scope_count == negated_scope_count_i
+
+                            token.with { printer.print ([chap_name, sent_indx, tok_indx, word, lemma, pos, syntax].join('\t')) }
+
+                            if (negated_scope_count) {
+                                negated_scope_count.times { scope_i ->
+                                    def scope_labels = token.labels[(scope_i * 3)..<((scope_i + 1) * 3)]
+
+//                            String id = token.with { chap_name + '/' + sent_indx + '/' + scope_i + '/' + tok_indx }
+                                    def label = sys_labels[scope_i][token_i] in ['-', '_'] ? '_' : token.word
+
+                                    if (sys_labels[scope_i][token_i] == '!') {
+                                        label = token.word.replaceFirst("^${scope_labels[0]}", "")
+                                        if (!label) label = '_'
+                                    }
+
+                                    printer.print '\t'
+                                    printer.print ([scope_labels[0], label, scope_labels[2]].join('\t'))
+//                            printer.print scope_labels.join('\t')
+                                }
+                                printer.println()
+                            } else {
+                                printer.println "\t***"
+                            }
+                        }
+
+                        printer.println()
+                    }
+                }
+            }
+        }
+    }
 
     def tree_to_mallet_sequence(File tree_infile, File outfile)
     {
@@ -219,11 +300,15 @@ static def sexp_escape(String s)
                 def label = (tree[5] == '_') ? tree[6] : '!'
 
                 def instance = [
-                        'pos_' + tree[2], 'word_' + tree[3], 'lemma_' + tree[4]
-                        , 'distance=' + (tree[8] as Integer) - (cue[8] as Integer)  // Good for ~2% acc
-                        , 'cue_word_' + cue[3].toLowerCase(), 'cue_lemma_' + cue[4], 'cue_pos_' + cue[2]
-                        , 'up_' + up_path    // Good for ~6% acc
-                        , 'down_' + down_path  // Hurts ~4% when up_ is present.
+                        'pos_' + tree[2]
+                        , 'word_' + tree[3].toLowerCase()
+                        , 'lemma_' + tree[4].toLowerCase()
+                        , 'distance=' + ((tree[8] as Integer) - (cue[8] as Integer))
+                        , 'cue_word_' + cue[3].toLowerCase()
+                        , 'cue_lemma_' + cue[4].toLowerCase()
+                        , 'cue_pos_' + cue[2]
+                        , 'up_' + up_path
+                        , 'down_' + down_path
                         , label
                 ]
                 

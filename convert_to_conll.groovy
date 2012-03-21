@@ -65,6 +65,9 @@ def convert_to_conll(File scope_file, File in_file, File out_file)
                             String id = token.with { chap_name + '/' + sent_indx + '/' + scope_i + '/' + tok_indx }
                             def label = sys_labels[id] == '+' ? token.word : '_'
 
+//                            if (sys_labels[id] == '!') label = token.word - ~"^${scope_labels[0]}"
+//                            if (sys_labels[id] == '!') label = token.word.replaceFirst("^${scope_labels[0]}", "")
+
                             printer.print '\t'
                             printer.print ([scope_labels[0], label, scope_labels[2]].join('\t'))
 //                            printer.print scope_labels.join('\t')
