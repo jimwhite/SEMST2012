@@ -4,6 +4,7 @@ data_dir = new File('data')
 scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
 train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.txt')
+//train_file = new File(scope_dir, 'coordinated_train.txt')
 dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-dev-09032012.txt')
 
 train_cues_file = new File(data_dir, 'train.cues.txt')
@@ -72,6 +73,8 @@ if (prepare_data) {
 //        , "--classifier", scope_classifier, "--output", dev_scope_output].execute()
 //println "classify_dev_scope_process = ${classify_dev_scope_process.waitFor()}"
 //
+
+return 0
 
 println simple_train_simple_tagger(train_scope_file, scope_classifier)
 

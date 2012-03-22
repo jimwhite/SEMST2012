@@ -279,7 +279,7 @@ static def sexp_escape(String s)
                         def cue_path = path_to_cue(sexp)
 //                        println cue_path
                         if (cue_path) {
-                            printSequences(sexp, cue_path, [], printer)
+                            printSequences(sexp, cue_path, [], 'root', printer)
                             printer.println()
                         }
                     }
@@ -288,7 +288,7 @@ static def sexp_escape(String s)
         }
     }
 
-    def printSequences(Object tree, List cue_up_path, List cue_down_path, PrintWriter printer)
+    def printSequences(Object tree, List cue_up_path, List cue_down_path, String cue_path_rel, PrintWriter printer)
     {
         if (tree instanceof List) {
             if (tree[0] == 'token') {
@@ -298,6 +298,9 @@ static def sexp_escape(String s)
                 def down_path = cue_down_path.collect { it[0] }.join('_')
 
                 def label = (tree[5] == '_') ? tree[6] : '!'
+                
+//                def up_coordination = find_coordination(cue_up_path)
+//                def down_coordination = find_coordination(cue_down_path)
 
                 def instance = [
                         'pos_' + tree[2]
@@ -309,6 +312,9 @@ static def sexp_escape(String s)
                         , 'cue_pos_' + cue[2]
                         , 'up_' + up_path
                         , 'down_' + down_path
+//                        , 'cc_up=' + !up_coordination.isEmpty()
+                        , 'rel_' + cue_path_rel
+//                        , 'cc_down=' + !down_coordination.isEmpty()
                         , label
                 ]
                 
@@ -317,20 +323,34 @@ static def sexp_escape(String s)
                 // cc.mallet.fst.SimpleTagger says "whitespace" but what they mean is space.
 //                    printer.println (instance.join('\t'))
                 printer.println (instance.join(' '))
+
+//                throw new FooException()
             } else {
                 if (tree.is(cue_up_path[-1])) {
                     cue_up_path = cue_up_path[0..-2]
+
+                    def cue_sibling_x = tree.tail().indexOf(cue_up_path[-1])
+                    
+                    tree.tail().eachWithIndex { child, x ->
+                        printSequences(child, cue_up_path, cue_down_path, tree[0] + '_' + (x - cue_sibling_x), printer)
+                    }
                 } else {
                     cue_down_path = cue_down_path + [tree]
+
+                    tree.tail().each {
+                        printSequences(it, cue_up_path, cue_down_path, cue_path_rel, printer)
+                    }
                 }
 
-                tree.each {
-                    printSequences(it, cue_up_path, cue_down_path, printer)
-                }
             }
         }
     }
 
+    // Non-terimnal nodes on path (if any) that contain an immediate CC child token node.
+    List find_coordination(List path)
+    {
+        path.collectMany { (it[0] == "token" ? [] : (it.tail().find { it[0] == "token" && it[2] == "CC" } ? [it] : []))}
+    }
 
 def tree_to_mallet(File tree_infile, File outfile)
 {
