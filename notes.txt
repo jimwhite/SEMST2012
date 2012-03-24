@@ -66,3 +66,10 @@ baskervilles09 s383 (#2197) : There was the sharp pinnacle of granite still cutt
 
 The scope of "motionless" is just "motion" and "that".
 
+neither/nor and other multiword cues need help
+
+Scope oddities:
+	Dr for Dr. and L for L., but Mr. for Mr. and Mrs. for Mrs.
+	infinite rather than finite
+	
+	

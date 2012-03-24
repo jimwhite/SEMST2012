@@ -8,20 +8,33 @@ train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.t
 dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-dev-09032012.txt')
 
 train_cues_file = new File(data_dir, 'train.cues.txt')
+train_cues_vector_file = new File(data_dir, 'train.cues.vectors')
 dev_cues_file = new File(data_dir, 'dev.cues.txt')
+
+cue_classifier = new File(data_dir, 'cue.classifier')
+
+train_cue_output = new File(data_dir, 'output.train.cue.txt')
+dev_cue_output = new File(data_dir, 'output.dev.cue.txt')
 
 train_trees_file = new File(data_dir, 'train.trees.txt')
 dev_trees_file = new File(data_dir, 'dev.trees.txt')
 
+//train_scope_vectors = new File(data_dir, 'train.scope.vectors')
 train_scope_file = new File(data_dir, 'train.scope.txt')
-train_scope_vectors = new File(data_dir, 'train.scope.vectors')
 dev_scope_file = new File(data_dir, 'dev.scope.txt')
 
 train_scope_output = new File(data_dir, "output.train.scope.txt")
 dev_scope_output = new File(data_dir, "output.dev.scope.txt")
 
-//scope_classifier = new File(data_dir, "scope_max_ent.classifier")
 scope_classifier = new File(data_dir, "scope.model")
+
+train_event_file = new File(data_dir, 'train.event.txt')
+dev_event_file = new File(data_dir, 'dev.event.txt')
+
+train_event_output = new File(data_dir, "output.train.event.txt")
+dev_event_output = new File(data_dir, "output.dev.event.txt")
+
+event_classifier = new File(data_dir, "event.model")
 
 sys_train_file = new File(data_dir, "output.training.conll.txt")
 sys_dev_file = new File(data_dir, "output.dev.conll.txt")
@@ -40,8 +53,11 @@ if (prepare_data) {
 //    decoder.tree_to_mallet(train_trees_file, train_scope_file)
 //    decoder.tree_to_mallet(dev_trees_file, dev_scope_file)
 
-    decoder.tree_to_mallet_sequence(train_trees_file, train_scope_file)
-    decoder.tree_to_mallet_sequence(dev_trees_file, dev_scope_file)
+    decoder.tree_to_scope_sequence(train_trees_file, train_scope_file)
+    decoder.tree_to_scope_sequence(dev_trees_file, dev_scope_file)
+
+    decoder.tree_to_event_sequence(train_trees_file, train_event_file)
+    decoder.tree_to_event_sequence(dev_trees_file, dev_event_file)
 }
 
 /*
@@ -106,5 +122,5 @@ def simple_simple_tagger(File model_file, File input_file, File output_file)
     return proc.waitFor()
 }
 
-decoder.convert_to_conll(train_scope_output, train_file, sys_train_file)
-decoder.convert_to_conll(dev_scope_output, dev_file, sys_dev_file)
+decoder.convert_scope_to_conll(train_scope_output, train_file, sys_train_file)
+decoder.convert_scope_to_conll(dev_scope_output, dev_file, sys_dev_file)
