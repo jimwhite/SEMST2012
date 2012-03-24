@@ -2,7 +2,7 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(includes="type,token_indicies")
 class Cue //implements Comparable
 {
 //    @Override

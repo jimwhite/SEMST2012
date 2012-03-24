@@ -10,15 +10,19 @@ class AffixRule extends Rule
     String pos
     Boolean prefix
     Pattern pattern
+    
+    Set<String> gold_positive = []
+    Set<String> gold_negative = []
 
     AffixRule(List<Map> tokens, Cue cue)
     {
         pos = cue.pos[0]
-        
-        def cue_str = cue.cue[0]
+        def cue_str = cue.cue[0].toLowerCase()
 
         Map token = tokens[cue.token_indicies[0]]
         String word = token.word.toLowerCase()
+
+        gold_positive.add(word)
         
         if (word.startsWith(cue_str)) {
             prefix = true
@@ -38,10 +42,29 @@ class AffixRule extends Rule
         tokens.collectMany { token ->
             if (token.pos == pos) {
                 def m = pattern.matcher(token.word)
-                (m.matches()) ? [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [m.group(prefix ? 1 : 2)], [pos])] : []
+                if (m.matches()) {
+                    if (gold_negative.contains(token.word.toLowerCase())) {
+                        []
+                    } else {
+                        [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [m.group(prefix ? 1 : 2)], [pos])]
+                    }
+                } else {
+                    []
+                }
             } else {
                 []
             }
         }
+    }
+
+    void addPositive(List<Map> tokens, Cue cue)
+    {
+        gold_positive.add(tokens[cue.token_indicies[0]].word.toLowerCase())
+    }
+
+    void addNegative(List<Map> tokens, Cue cue)
+    {
+        def word = tokens[cue.token_indicies[0]].word.toLowerCase()
+        if (!gold_positive.contains(word)) { gold_negative.add(word) }
     }
 }

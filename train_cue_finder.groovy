@@ -50,25 +50,54 @@ train_file.withReader { reader ->
 //
 //instances.each { if (it.gold.type.contains(Cue.CueType.MULTIWORD_GAPPY)) { println it.gold ; println it.tokens; println() } }
 
-rules = [] as Set<Rule>
+Map<Rule, Rule> rules = [:]
 
 instances.each { instance ->
-    instance.gold.each { rules.add(Rule.ruleForCue(instance.tokens, it)) }
+    instance.gold.each { cue ->
+        def rule = Rule.ruleForCue(instance.tokens, cue)
+        if (rule instanceof AffixRule && rules.containsKey(rule)) {
+            rules[rule].addPositive(instance.tokens, cue)
+        } else {
+            rules[rule] = rule
+        }
+    }
 }
 
 println instances.size()
 println rules.size()
 
-//rules.each { println() ; println it }
+instances.each { instance ->
+    def matches = rules.values().collectMany { rule -> rule.match(instance.tokens) }
+
+    matches.each { Cue cue ->
+        if ((cue.type == Cue.CueType.AFFIX) && !(instance.gold.contains(cue))) {
+//            println "Negative case ${cue}"
+            rules[Rule.ruleForCue(instance.tokens, cue)].addNegative(instance.tokens, cue)
+        }
+    }
+}
+
+
+rules.values().each { println() ; println it }
 
 instances.each { instance ->
-    if (instance.gold) {
-        def matches = rules.collectMany { rule -> rule.match(instance.tokens) }
+    def matches = rules.values().collectMany { rule -> rule.match(instance.tokens) } as Set<Cue>
+    
+    def multiword_indicies = matches.collectMany { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) ? cue.token_indicies : [] }
+
+    if (multiword_indicies) {
+        matches = matches.grep { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) || !multiword_indicies.intersect(cue.token_indicies) }
+    }
+
+//    if (!(matches == instance.gold) || (instance.gold.grep { it.type == Cue.CueType.MULTIWORD_CONTIGUOUS })) {
+    if (!(matches == instance.gold)) {
         println matches
         println()
         println instance.gold
         println()
         println instance.tokens
+
         println('---')
     }
 }
+
