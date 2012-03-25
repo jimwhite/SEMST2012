@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 data_dir = new File('data')
 scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
