@@ -276,6 +276,12 @@ static def sexp_escape(String s)
 
                         def negated_scope_count = (CoNLLDecode.decode_line_to_token(lines[0]).labels.size() / 3) as Integer
 
+//                        if (negated_scope_count) {
+//                            println negated_scope_count
+//                            println lines
+//                            println '-----'
+//                        }
+
                         def sys_labels = [:].withDefault { [:] }
 
                         negated_scope_count.times { scope_i ->
@@ -285,7 +291,10 @@ static def sexp_escape(String s)
                                 sys_labels[scope_i][token_i] = label
                             }
                             def bl = label_reader.readLine().trim()
-                            if (bl != "") println "Label file out of sync! Expected blank line.  Got '$bl'"
+                            if (bl != "") {
+                                println "Label file out of sync! Expected blank line.  Got '$bl'"
+//                                throw new FooException()
+                            }
                         }
 
                         lines.eachWithIndex { line, token_i ->

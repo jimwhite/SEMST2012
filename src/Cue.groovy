@@ -23,6 +23,7 @@ class Cue //implements Comparable
     List<Integer> token_indicies
     List<String> cue
     List<String> pos
+    List<String> scope
 
     Cue(List token_label_pairs)
     {
@@ -30,7 +31,7 @@ class Cue //implements Comparable
 //        this.tokens = token_label_pairs.collect { (Map) it[0] }
         token_indicies = token_label_pairs.collect { it[0].tok_indx }
         pos = token_label_pairs.collect { it[0].pos }
-        cue = token_label_pairs.collect { it[1].toLowerCase() }
+        cue = token_label_pairs.collect { it[1] }
 
         if (token_label_pairs.size() == 1) {
             if (cue[0].equalsIgnoreCase(token_label_pairs[0][0].word)) {
@@ -52,16 +53,26 @@ class Cue //implements Comparable
 //        cue = cue*.toLowerCase()
     }
     
-    Cue(Cue.CueType type, List<Integer> token_indicies, List<String> cue, List<String> pos)
+    Cue(Cue.CueType type, List<Integer> token_indicies, List<String> cue, List<String> pos, List<String> scope = null)
     {
         this.type = type
         this.token_indicies = token_indicies
         this.cue = cue
         this.pos = pos
+        this.scope = scope
     }
     
     String conll_cue_value(Integer token_i)
     {
+//        (token_indicies.contains(token_i)) ? cue[token_indicies.indexOf(token_i)] : '_'
+//        def cv = cue[token_indicies.indexOf(token_i)]
+//        if (!(cv.trim()) || (cv == '_')) { println(this) }
+//        cv
         cue[token_indicies.indexOf(token_i)]
+    }
+
+    String conll_scope_value(Integer token_i)
+    {
+        (token_indicies.contains(token_i) && scope) ? scope[token_indicies.indexOf(token_i)] : '_'
     }
 }

@@ -42,6 +42,12 @@ class CueFinder
 
                     def matches = rules.values().collectMany { rule -> rule.match(tokens) } as Set<Cue>
 
+                    def multiword_indicies = matches.collectMany { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) ? cue.token_indicies : [] }
+
+                    if (multiword_indicies) {
+                        matches = matches.grep { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) || !multiword_indicies.intersect(cue.token_indicies) }
+                    }
+
                     tokens.eachWithIndex { token, token_i ->
                         token.with { printer.print ([chap_name, sent_indx, tok_indx, word, lemma, pos, syntax].join('\t')) }
 
@@ -49,7 +55,7 @@ class CueFinder
                             matches.each { Cue cue ->
                                 printer.print '\t'
                                 if (token_i in cue.token_indicies) {
-                                    printer.print([cue.conll_cue_value(token_i), '_', '_'].join('\t'))
+                                    printer.print([cue.conll_cue_value(token_i), cue.conll_scope_value(token_i), '_'].join('\t'))
                                 } else {
                                     printer.print(['_', '_', '_'].join('\t'))
                                 }

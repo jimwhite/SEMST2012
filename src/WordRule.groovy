@@ -21,6 +21,6 @@ class WordRule extends Rule
     @Override
     List<Cue> match(List<Map> tokens)
     {
-        tokens.collectMany { ((pos == it.pos) && word.equalsIgnoreCase(it.word)) ? [new Cue(Cue.CueType.WORD, [it.tok_indx], [word], [pos])] : [] }
+        tokens.collectMany { ((pos == it.pos) && word.equalsIgnoreCase(it.word)) ? [new Cue(Cue.CueType.WORD, [it.tok_indx], [it.word], [pos])] : [] }
     }
 }

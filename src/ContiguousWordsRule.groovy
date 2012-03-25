@@ -25,7 +25,9 @@ class ContiguousWordsRule extends Rule
         for (int i = 0; i < tokens.size(); ++i) {
             if ((pos[word_i] == tokens[i].pos) && (words[word_i].equalsIgnoreCase(tokens[i].word))) {
                 if (++word_i == words.size()) {
-                    matches.add(new Cue(Cue.CueType.MULTIWORD_CONTIGUOUS, [*((i-(word_i-1))..(i))], words, pos))
+                    def indicies = [*((i - (word_i - 1))..(i))]
+                    def cue_words = indicies.collect { tokens[it].word }
+                    matches.add(new Cue(Cue.CueType.MULTIWORD_CONTIGUOUS, indicies, cue_words, pos))
                     word_i = 0
                 }
             } else {

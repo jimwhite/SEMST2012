@@ -46,7 +46,7 @@ class AffixRule extends Rule
                     if (gold_negative.contains(token.word.toLowerCase())) {
                         []
                     } else {
-                        [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [m.group(prefix ? 1 : 2)], [pos])]
+                        [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [m.group(prefix ? 1 : 2)], [pos], [m.group(prefix ? 2 : 1)])]
                     }
                 } else {
                     []
