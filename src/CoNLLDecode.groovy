@@ -1,7 +1,7 @@
 
 public class CoNLLDecode
 {
-    static def decode_lines_to_tokens(List <String> lines)
+    static List<Map> decode_lines_to_tokens(List <String> lines)
     {
         lines.collect { decode_line_to_token(it) }
     }

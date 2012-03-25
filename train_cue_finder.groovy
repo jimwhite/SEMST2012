@@ -50,54 +50,39 @@ train_file.withReader { reader ->
 //
 //instances.each { if (it.gold.type.contains(Cue.CueType.MULTIWORD_GAPPY)) { println it.gold ; println it.tokens; println() } }
 
-Map<Rule, Rule> rules = [:]
+finder = new CueFinder()
 
-instances.each { instance ->
-    instance.gold.each { cue ->
-        def rule = Rule.ruleForCue(instance.tokens, cue)
-        if (rule instanceof AffixRule && rules.containsKey(rule)) {
-            rules[rule].addPositive(instance.tokens, cue)
-        } else {
-            rules[rule] = rule
+finder.train(instances)
+
+if (false) {
+
+    finder.rules.values().each { println() ; println it }
+
+    instances.each { instance ->
+        def matches = finder.rules.values().collectMany { rule -> rule.match(instance.tokens) } as Set<Cue>
+
+        def multiword_indicies = matches.collectMany { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) ? cue.token_indicies : [] }
+
+        if (multiword_indicies) {
+            matches = matches.grep { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) || !multiword_indicies.intersect(cue.token_indicies) }
+        }
+
+    //    if (!(matches == instance.gold) || (instance.gold.grep { it.type == Cue.CueType.MULTIWORD_CONTIGUOUS })) {
+        if (!(matches == instance.gold)) {
+            println matches
+            println()
+            println instance.gold
+            println()
+            println instance.tokens
+
+            println('---')
         }
     }
+
 }
 
-println instances.size()
-println rules.size()
+//finder.find_cues_to_conll(train_file, sys_train_cues_conll_file)
+//finder.find_cues_to_conll(dev_file, sys_dev_cues_conll_file)
 
-instances.each { instance ->
-    def matches = rules.values().collectMany { rule -> rule.match(instance.tokens) }
-
-    matches.each { Cue cue ->
-        if ((cue.type == Cue.CueType.AFFIX) && !(instance.gold.contains(cue))) {
-//            println "Negative case ${cue}"
-            rules[Rule.ruleForCue(instance.tokens, cue)].addNegative(instance.tokens, cue)
-        }
-    }
-}
-
-
-rules.values().each { println() ; println it }
-
-instances.each { instance ->
-    def matches = rules.values().collectMany { rule -> rule.match(instance.tokens) } as Set<Cue>
-    
-    def multiword_indicies = matches.collectMany { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) ? cue.token_indicies : [] }
-
-    if (multiword_indicies) {
-        matches = matches.grep { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) || !multiword_indicies.intersect(cue.token_indicies) }
-    }
-
-//    if (!(matches == instance.gold) || (instance.gold.grep { it.type == Cue.CueType.MULTIWORD_CONTIGUOUS })) {
-    if (!(matches == instance.gold)) {
-        println matches
-        println()
-        println instance.gold
-        println()
-        println instance.tokens
-
-        println('---')
-    }
-}
-
+finder.find_cues_to_conll(train_file, train_cue_output)
+finder.find_cues_to_conll(dev_file, dev_cue_output)

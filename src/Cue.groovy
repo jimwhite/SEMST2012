@@ -59,4 +59,9 @@ class Cue //implements Comparable
         this.cue = cue
         this.pos = pos
     }
+    
+    String conll_cue_value(Integer token_i)
+    {
+        cue[token_indicies.indexOf(token_i)]
+    }
 }
