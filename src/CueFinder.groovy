@@ -78,6 +78,20 @@ class CueFinder
 
                     def matches = rules.values().collectMany { rule -> rule.match(tokens) } as Set<Cue>
 
+                    matches = matches.grep { Cue cue ->
+                        !(tokens[cue.token_indicies[0]].word.equalsIgnoreCase('no')
+                                && (cue.token_indicies[0] + 1 < tokens.size())
+                                && (tokens[cue.token_indicies[0]+1].word.equalsIgnoreCase('doubt'))
+                                && !((cue.token_indicies[0] > 0) && (tokens[cue.token_indicies[0]-1].word.equalsIgnoreCase('be') || tokens[cue.token_indicies[0]-1].word.equalsIgnoreCase('have')))
+                        ) &&
+                                !(tokens[cue.token_indicies[0]].word.equalsIgnoreCase('none')
+                                        && (cue.token_indicies[0] + 2 < tokens.size())
+                                        && (tokens[cue.token_indicies[0]+1].word.equalsIgnoreCase('the'))
+                                        && ((cue.token_indicies[0] > 0) && (tokens[cue.token_indicies[0]+2].word.equalsIgnoreCase('less') || tokens[cue.token_indicies[0]+2].word.equalsIgnoreCase('worse')))
+                                )
+
+                    }
+
                     def multiword_indicies = matches.collectMany { Cue cue -> cue.isMultiword() ? cue.token_indicies : [] }
 
                     if (multiword_indicies) {
