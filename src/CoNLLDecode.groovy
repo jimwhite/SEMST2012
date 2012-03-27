@@ -10,7 +10,7 @@ static def decode_line_to_token(String line)
 {
     def columns = line.split(/\t/)
     def (chap_name, sent_indx, tok_indx, word, lemma, pos, syntax) = columns
-    def labels = columns[7..-1].collect { it.trim() }
+    def labels = (columns.size() > 7) ? columns[7..-1].collect { it.trim() } : []
 
     [chap_name:chap_name, sent_indx:sent_indx as Integer, tok_indx:tok_indx as Integer, word:word, lemma:lemma, pos:pos, syntax:syntax, labels:labels]
 }
@@ -316,12 +316,14 @@ static def sexp_escape(String s)
 //                                    label = label.replaceAll(/\./, '%')
 
                                     if (sys_labels[scope_i][token_i] == '!') {
-                                        if (scope_labels[0] == "less") {
-                                            label = token.word.replaceAll(/less(?:ness)?(?:ly)?$/, "")
-                                        } else {
-                                            label = token.word.replaceFirst("^${scope_labels[0]}", "")
-                                        }
-                                        if (!label) label = '_'
+                                        // For cues we get the scope token (if any) from the cue finder.
+                                        label = scope_labels[1]
+//                                        if (scope_labels[0] == "less") {
+//                                            label = token.word.replaceAll(/less(?:ness)?(?:ly)?$/, "")
+//                                        } else {
+//                                            label = token.word.replaceFirst("^${scope_labels[0]}", "")
+//                                        }
+//                                        if (!label) label = '_'
                                     }
 
                                     printer.print '\t'

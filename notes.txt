@@ -72,4 +72,93 @@ Scope oddities:
 	Dr for Dr. and L for L., but Mr. for Mr. and Mrs. for Mrs.
 	infinite rather than finite
 	
-	
+
+Annotation Disagreement:
+
+'absolutely' modifies 'no' here, not 'sympathy' and so should not be included in the scope.
+If it *is* part of  the scope then it needs to be the root 'absolute'.
+
+wisteria01	44	0	Private	Private	JJ	(S(NP*	_	Private	_
+wisteria01	44	1	detectives	detective	NNS	*)	_	detectives	_
+wisteria01	44	2	are	be	VBP	(VP*	_	are	_
+wisteria01	44	3	a	a	DT	(NP(NP*	_	a	_
+wisteria01	44	4	class	class	NN	*)	_	class	_
+wisteria01	44	5	with	with	IN	(PP*	_	with	_
+wisteria01	44	6	whom	whom	WP	(SBAR(WHNP*)	_	whom	_
+wisteria01	44	7	I	I	PRP	(S(NP*)	_	I	_
+wisteria01	44	8	have	have	VBP	(VP*	_	have	have
+wisteria01	44	9	absolutely	absolutely	RB	(NP(NP*	_	absolutely	_
+wisteria01	44	10	no	no	DT	*	no	_	_
+wisteria01	44	11	sympathy	sympathy	NN	*)	_	sympathy	_
+wisteria01	44	12	,	,	,	*	_	_	_
+wisteria01	44	13	but	but	CC	*	_	_	_
+wisteria01	44	14	none	none	NN	(NP(NP*)	_	_	_
+wisteria01	44	15	the	the	DT	(ADJP*	_	_	_
+wisteria01	44	16	less	less	JJR	*)))	_	_	_
+wisteria01	44	17	,	,	,	*	_	_	_
+wisteria01	44	18	having	have	VBG	(S(VP*	_	_	_
+wisteria01	44	19	heard	hear	VBN	(VP*	_	_	_
+wisteria01	44	20	your	your	PRP$	(NP*	_	_	_
+wisteria01	44	21	name	name	NN	*))))))))))	_	_	_
+wisteria01	44	22	--	--	:	*	_	_	_
+wisteria01	44	23	''	''	''	*)	_	_	_
+
+This disfluency is counted as two instances of negation, but in the training (UH no)  ... (UH no) is counted as a single cue (and therefore negation).
+
+wisteria01	86	0	You	You	PRP	(S(NP*)	_	You	_	_	_	_
+wisteria01	86	1	do	do	VBP	(VP*	_	do	_	_	_	_
+wisteria01	86	2	n't	n't	RB	*	n't	_	_	_	_	_
+wisteria01	86	3	mean	mean	VB	(VP*	_	mean	_	_	_	_
+wisteria01	86	4	--	--	:	*	_	_	_	_	_	_
+wisteria01	86	5	you	you	PRP	(S(NP*)	_	_	_	_	you	_
+wisteria01	86	6	do	do	VBP	(VP*	_	_	_	_	do	_
+wisteria01	86	7	n't	n't	RB	*	_	_	_	n't	_	_
+wisteria01	86	8	mean	mean	VB	(VP*	_	_	_	_	mean	_
+wisteria01	86	9	that	that	IN	(SBAR*	_	_	_	_	that	_
+wisteria01	86	10	I	I	PRP	(S(NP*)	_	_	_	_	I	_
+wisteria01	86	11	am	be	VBP	(VP*	_	_	_	_	am	_
+wisteria01	86	12	suspected	suspect	JJ	(ADJP*)))))))))	_	_	_	_	suspected	_
+wisteria01	86	13	?	?	.	*	_	_	_	_	_	_
+wisteria01	86	14	''	''	''	*)	_	_	_	_	_	_
+
+'Unhappily' is 'not happily'. 
+
+wisteria02	359	0	Unhappily	Unhappily	RB	(S(ADVP*)	Un	happily	happily
+wisteria02	359	1	,	,	,	*	_	_	_
+wisteria02	359	2	Murillo	Murillo	NNP	(NP*)	_	_	_
+wisteria02	359	3	heard	hear	VBN	(VP(VP*	_	_	heard
+wisteria02	359	4	of	of	IN	(PP*	_	_	_
+wisteria02	359	5	his	his	PRP$	(NP*	_	_	_
+wisteria02	359	6	excellence	excellence	NN	*)))	_	_	_
+wisteria02	359	7	,	,	,	*	_	_	_
+wisteria02	359	8	recalled	recall	VBD	(VP*	_	_	_
+wisteria02	359	9	him	him	PRP	(NP*)	_	_	_
+wisteria02	359	10	on	on	IN	(PP*	_	_	_
+wisteria02	359	11	some	some	DT	(NP*	_	_	_
+wisteria02	359	12	pretext	pretext	NN	*)))	_	_	_
+wisteria02	359	13	,	,	,	*	_	_	_
+wisteria02	359	14	and	and	CC	*	_	_	_
+wisteria02	359	15	had	have	VBD	(VP*	_	_	_
+wisteria02	359	16	him	him	PRP	(NP*	_	_	_
+wisteria02	359	17	shot	shoot	NN	*)))	_	_	_
+wisteria02	359	18	.	.	.	*)	_	_	_
+
+I don't detect this:
+
+wisteria01	121	14	gave	give	VBD	(VP*	_	_	_
+wisteria01	121	15	other	other	JJ	(NP(NP*	_	_	_
+wisteria01	121	16	signs	sign	NNS	*)	_	_	_
+wisteria01	121	17	of	of	IN	(PP*	_	_	_
+wisteria01	121	18	nervous	nervous	JJ	(NP*	_	_	_
+wisteria01	121	19	impatience	impatience	NN	*)))))	im	patience	patience
+wisteria01	121	20	.	.	.	*)	_	_	_
+
+because of this:
+
+baskervilles14	79	13	stamped	stamp	VBD	(VP*	***
+baskervilles14	79	14	his	his	PRP$	(NP*	***
+baskervilles14	79	15	feet	foot	NNS	*)	***
+baskervilles14	79	16	in	in	IN	(PP*	***
+baskervilles14	79	17	his	his	PRP$	(NP*	***
+baskervilles14	79	18	impatience	impatience	NN	*))))	***
+

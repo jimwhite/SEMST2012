@@ -6,6 +6,11 @@ scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.txt')
 dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-dev-09032012.txt')
 
+test_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-test-16032012')
+
+test1_file = new File(test_dir, 'SEM-2012-SharedTask-CD-SCO-test-cardboard.txt')
+test2_file = new File(test_dir, 'SEM-2012-SharedTask-CD-SCO-test-circle.txt')
+
 cue_classifier = new File(data_dir, 'cue.classifier')
 
 train_cue_output = new File(data_dir, 'output.train.cue.txt')
@@ -50,6 +55,16 @@ train_file.withReader { reader ->
 //instances.each { if (it.gold.type.contains(Cue.CueType.MULTIWORD_GAPPY)) { println it.gold ; println it.tokens; println() } }
 
 finder = new CueFinder()
+
+finder.add_to_lexicon(train_file)
+finder.add_to_lexicon(dev_file)
+finder.add_to_lexicon(test1_file)
+finder.add_to_lexicon(test2_file)
+
+//(finder.lexicon.keySet() as List).sort().each { println it }
+
+println finder.lexicon["burned"]
+println finder.lexicon.size()
 
 finder.train(instances)
 

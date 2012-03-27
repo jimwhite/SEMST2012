@@ -1,6 +1,8 @@
 class CueFinder
 {
     Map<Rule, Rule> rules = [:]
+    
+    static Map<String, Integer> lexicon = [:].withDefault { 0 }
 
     def train(List<Map> instances)
     {
@@ -25,6 +27,31 @@ class CueFinder
                 if ((cue.type == Cue.CueType.AFFIX) && !(instance.gold.contains(cue))) {
 //            println "Negative case ${cue}"
                     rules[Rule.ruleForCue(instance.tokens, cue)].addNegative(instance.tokens, cue)
+                }
+            }
+        }
+        
+//        rules.each { rule -> if (rule instanceof  AffixRule) rule.lexicon = lexicon }
+    }
+    
+    def add_to_lexicon(File conll_file)
+    {
+        conll_file.withReader { reader ->
+            def delimitedReader = new BlankLineTerminatedReader(reader)
+
+            while (delimitedReader.next()) {
+                List<String> lines = delimitedReader.readLines()
+
+                def tokens = CoNLLDecode.decode_lines_to_tokens(lines)
+
+                tokens.each { Map token ->
+//                    def word = (token.word.toLowerCase()) + ':' + token.pos[0]
+                    def word = (token.word.toLowerCase())
+                    if (word.startsWith("burn")) println word
+                    lexicon[word] = lexicon[word] + 1
+//                    def lemma = (token.lemma.toLowerCase()) + ':' + token.pos[0]
+                    def lemma = (token.lemma.toString())
+                    lexicon[word] = lexicon[lemma] + 1
                 }
             }
         }

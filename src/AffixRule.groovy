@@ -13,6 +13,8 @@ class AffixRule extends Rule
     
     Set<String> gold_positive = []
     Set<String> gold_negative = []
+    
+//    Map lexicon = [:]
 
     AffixRule(List<Map> tokens, Cue cue)
     {
@@ -39,14 +41,25 @@ class AffixRule extends Rule
     @Override
     List<Cue> match(List<Map> tokens)
     {
-        tokens.collectMany { token ->
-            if (token.pos == pos) {
+        tokens.collectMany { Map token ->
+            if (token.pos[0] == pos[0]) {
                 def m = pattern.matcher(token.word)
                 if (m.matches()) {
+                    def word_root = m.group(prefix ? 2 : 1)
+                    def word_affix = m.group(prefix ? 1 : 2)
                     if (gold_negative.contains(token.word.toLowerCase())) {
                         []
                     } else {
-                        [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [m.group(prefix ? 1 : 2)], [pos], [m.group(prefix ? 2 : 1)])]
+//                        if (gold_positive.contains(token.word.toLowerCase()) || lexicon.containsKey(word_root.toLowerCase() + ':' + token.pos[0])) {
+//                        if (gold_positive.contains(token.word.toLowerCase()) || lexicon.containsKey(word_root.toLowerCase())) {
+                        if (gold_positive.contains(token.word.toLowerCase()) || ok_root(word_root)) {
+//                        if (lexicon.containsKey(word_root.toLowerCase())) {
+//                            println "${token.word} $word_affix $word_root"
+                            [new Cue(Cue.CueType.AFFIX, [token.tok_indx], [word_affix], [pos], [word_root])]
+                        } else {
+//                            println "${token.word} $word_affix $word_root"
+                            []
+                        }
                     }
                 } else {
                     []
@@ -57,9 +70,21 @@ class AffixRule extends Rule
         }
     }
 
+    def ok_root(String root)
+    {
+//        println root
+//        (root.length() > 3) && !(root.contains("-"))
+//        false
+        
+//        if (root.startsWith("burn")) { println root ; println CueFinder.lexicon[root] ; println lexicon.size()}
+        CueFinder.lexicon.containsKey(root.toLowerCase())
+    }
+
     void addPositive(List<Map> tokens, Cue cue)
     {
-        gold_positive.add(tokens[cue.token_indicies[0]].word.toLowerCase())
+        def word = tokens[cue.token_indicies[0]].word.toLowerCase()
+        gold_positive.add(word)
+        if (gold_negative.contains(word)) { gold_negative.remove(word) }
     }
 
     void addNegative(List<Map> tokens, Cue cue)
