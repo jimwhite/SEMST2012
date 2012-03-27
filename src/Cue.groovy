@@ -18,6 +18,8 @@ class Cue //implements Comparable
     enum CueType { WORD, AFFIX, MULTIWORD_CONTIGUOUS, MULTIWORD_GAPPY }
     
     CueType type
+    
+    boolean isMultiword() { type in [CueType.MULTIWORD_CONTIGUOUS, CueType.MULTIWORD_GAPPY] }
 
 //    List<Map> tokens
     List<Integer> token_indicies

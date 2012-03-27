@@ -3,6 +3,7 @@
 data_dir = new File('data')
 scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
+//train_file = new File(data_dir, 'sample.train.gappy.txt')
 train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.txt')
 dev_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-dev-09032012.txt')
 
@@ -63,10 +64,12 @@ finder.add_to_lexicon(test2_file)
 
 //(finder.lexicon.keySet() as List).sort().each { println it }
 
-println finder.lexicon["burned"]
+//println finder.lexicon["burned"]
 println finder.lexicon.size()
 
 finder.train(instances)
+
+(AffixRule.suffixes.keySet() as List).sort().each { println it }
 
 if (false) {
 
@@ -99,5 +102,5 @@ if (false) {
 //finder.find_cues_to_conll(train_file, sys_train_cues_conll_file)
 //finder.find_cues_to_conll(dev_file, sys_dev_cues_conll_file)
 
-finder.find_cues_to_conll(train_file, train_cue_output)
 finder.find_cues_to_conll(dev_file, dev_cue_output)
+finder.find_cues_to_conll(train_file, train_cue_output)

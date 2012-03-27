@@ -3,6 +3,7 @@ class CueFinder
     Map<Rule, Rule> rules = [:]
     
     static Map<String, Integer> lexicon = [:].withDefault { 0 }
+//    static Map<String, Integer> suffixes = [:].withDefault { 0 }
 
     def train(List<Map> instances)
     {
@@ -21,7 +22,9 @@ class CueFinder
         println rules.size()
 
         instances.each { instance ->
-            def matches = rules.values().collectMany { rule -> rule.match(instance.tokens) }
+            def tokens = instance.tokens
+            if (!tokens) println instance
+            def matches = rules.values().collectMany { it.match(tokens) }
 
             matches.each { Cue cue ->
                 if ((cue.type == Cue.CueType.AFFIX) && !(instance.gold.contains(cue))) {
@@ -46,12 +49,18 @@ class CueFinder
 
                 tokens.each { Map token ->
 //                    def word = (token.word.toLowerCase()) + ':' + token.pos[0]
-                    def word = (token.word.toLowerCase())
-                    if (word.startsWith("burn")) println word
+                    String word = (token.word.toLowerCase())
                     lexicon[word] = lexicon[word] + 1
 //                    def lemma = (token.lemma.toLowerCase()) + ':' + token.pos[0]
-                    def lemma = (token.lemma.toString())
+                    String lemma = (token.lemma.toLowerCase())
                     lexicon[word] = lexicon[lemma] + 1
+
+//                    if (word != lemma && word.contains(lemma)) {
+//                        def suffix = word.substring(word.indexOf(lemma) + lemma.length())
+//                        if (suffix) {
+//                            suffixes[suffix] = suffixes[suffix] + 1
+//                        }
+//                    }
                 }
             }
         }
@@ -69,10 +78,10 @@ class CueFinder
 
                     def matches = rules.values().collectMany { rule -> rule.match(tokens) } as Set<Cue>
 
-                    def multiword_indicies = matches.collectMany { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) ? cue.token_indicies : [] }
+                    def multiword_indicies = matches.collectMany { Cue cue -> cue.isMultiword() ? cue.token_indicies : [] }
 
                     if (multiword_indicies) {
-                        matches = matches.grep { Cue cue -> (cue.type == Cue.CueType.MULTIWORD_CONTIGUOUS) || !multiword_indicies.intersect(cue.token_indicies) }
+                        matches = matches.grep { Cue cue -> cue.isMultiword() || !multiword_indicies.intersect(cue.token_indicies) }
                     }
 
                     tokens.eachWithIndex { token, token_i ->

@@ -22,7 +22,8 @@ new File('data/error_report.html').withWriter {
                         def gold_negated_scope_count = (gold_tokens[0].labels.size() / 3) as Integer
                         def sys_negated_scope_count = (sys_tokens[0].labels.size() / 3) as Integer
 
-                        if (gold_tokens.find { it.labels.collate(3).find { it[2] != '_' } } )
+//                        if (gold_tokens.find { it.labels.collate(3).find { it[2] != '_' } } )
+                        if (gold_tokens.collect { it.labels.collate(3).collect { it[0 ]} } != sys_tokens.collect { it.labels.collate(3).collect { it[0 ]} })
 
                         if (gold_negated_scope_count || sys_negated_scope_count) {
                             table(border: 1) {
