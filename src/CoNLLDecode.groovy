@@ -226,7 +226,7 @@ def convert_to_trees(File dev_file, File out_file)
 //                                sys_scope_label = '_'
 //                            }
                             
-                            sexp.append(syntax.replace('*', " (token $id ${sexp_escape(pos)} ${sexp_escape(word)} ${sexp_escape(lemma)} ${scope_labels[token_i][0]} ${sys_scope_label} ${scope_labels[token_i][2] == '_' ? '-' : '+'} $tok_indx ) "))
+                            sexp.append(syntax.replace('*', " (token $id ${sexp_escape(pos)} ${sexp_escape(word)} ${sexp_escape(lemma)} ${scope_labels[token_i][0]} ${sys_scope_label} ${scope_labels[token_i][2] == '_' ? '-' : '+'} $tok_indx ${sexp_brackets(syntax)}) "))
                         }
 
 //                    def cue_label = null
@@ -261,6 +261,11 @@ static def sexp_escape(String s)
     s = s.replace(")", "-RRB-")
     s
 }
+
+    static def sexp_brackets(String s)
+    {
+        s.replace("(", "[").replace(")", "]")
+    }
 
     def convert_scope_to_conll(File scope_file, File in_file, File out_file)
     {
@@ -385,12 +390,14 @@ static def sexp_escape(String s)
                                     def label = sys_labels[scope_i][token_i] in ['-', '_'] ? '_' : token.word
 
                                     if (scope_labels[0] != '_') {
-                                        if (scope_labels[0] == "less") {
-                                            label = token.word.replaceAll(/less(?:ness)?(?:ly)?$/, "")
-                                        } else {
-                                            label = token.word.replaceFirst("^${scope_labels[0]}", "")
-                                        }
-                                        if (!label) label = '_'
+                                        // For cues we get the scope token (if any) from the cue finder.
+                                        label = scope_labels[1]
+//                                        if (scope_labels[0] == "less") {
+//                                            label = token.word.replaceAll(/less(?:ness)?(?:ly)?$/, "")
+//                                        } else {
+//                                            label = token.word.replaceFirst("^${scope_labels[0]}", "")
+//                                        }
+//                                        if (!label) label = '_'
                                     }
 
                                     printer.print '\t'
@@ -519,14 +526,20 @@ static def sexp_escape(String s)
 
                 def instance = [
                         'pos_' + tree[2]
+//                        , 'pos1_' + tree[2][0]
                         , 'word_' + tree[3].toLowerCase()
                         , 'lemma_' + tree[4].toLowerCase()
-                        , 'distance=' + ((tree[8] as Integer) - (cue[8] as Integer))
+//                        , 'reld=' + (((tree[8] as Integer) - (cue[8] as Integer)) < 0 ? 'L' : 'R')
+                        , 'dist=' + ((tree[8] as Integer) - (cue[8] as Integer))
                         , 'cue_word_' + cue[3].toLowerCase()
                         , 'cue_lemma_' + cue[4].toLowerCase()
                         , 'cue_pos_' + cue[2]
+//                        , 'cue_pos1_' + cue[2][0]
+                        , 'in=' + (tree[9] == '*')
                         , 'up_' + up_path
                         , 'down_' + down_path
+// No Help                , 'synl_' + tree[9].substring(0, tree[9].indexOf('*')+1)
+// No Help                , 'synr_' + tree[9].substring(tree[9].indexOf('*'))
 //                        , 'cc_up=' + !up_coordination.isEmpty()
 //                        , 'cc_down=' + !down_coordination.isEmpty()
                         , label
@@ -549,7 +562,9 @@ static def sexp_escape(String s)
                     
                     tree.tail().eachWithIndex { child, x ->
 //                        print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0], 'cpr_dx_' + (x - cue_sibling_x)], printer)
-                        print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0] + '_' + (x - cue_sibling_x)], printer)
+//                        print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0] + '_' + (x - cue_sibling_x)], printer)
+// Not better             print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0], 'cprd_' + cue_rel_distance(x, cue_sibling_x)], printer)
+                        print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0] + '_' + cue_rel_distance(x, cue_sibling_x)], printer)
                     }
                 } else {
                     cue_down_path = cue_down_path + [tree]
@@ -561,6 +576,14 @@ static def sexp_escape(String s)
 
             }
         }
+    }
+
+     String cue_rel_distance(x, cue_sibling_x)
+    {
+        def d = x - cue_sibling_x
+//        return x < cue_sibling_x ? 'L' : 'R'
+//        (d < -2) ? 'L' : (d > 2) ? 'R' : d
+        (cue_sibling_x ? 'X' : 'H') + d
     }
 
     def tree_to_event_sequence(File tree_infile, File outfile)
@@ -604,14 +627,19 @@ static def sexp_escape(String s)
 
                 def instance = [
                         'pos_' + tree[2]
+//                        , 'pos1_' + tree[2][0]
                         , 'word_' + tree[3].toLowerCase()
                         , 'lemma_' + tree[4].toLowerCase()
-                        , 'distance=' + ((tree[8] as Integer) - (cue[8] as Integer))
+//                        , 'reld=' + (((tree[8] as Integer) - (cue[8] as Integer)) < 0 ? 'L' : 'R')
+                        , 'dist=' + ((tree[8] as Integer) - (cue[8] as Integer))
                         , 'cue_word_' + cue[3].toLowerCase()
                         , 'cue_lemma_' + cue[4].toLowerCase()
                         , 'cue_pos_' + cue[2]
+//                        , 'cue_pos1_' + cue[2][0]
+                        , 'in=' + (tree[9] == '*')
                         , 'up_' + up_path
                         , 'down_' + down_path
+//                        , 'scope=' + ((tree[5] == '_') ? tree[6] : '!')
 //                        , 'cc_up=' + !up_coordination.isEmpty()
 //                        , 'cc_down=' + !down_coordination.isEmpty()
                         , label
@@ -635,6 +663,7 @@ static def sexp_escape(String s)
                     tree.tail().eachWithIndex { child, x ->
 //                        print_scope_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0], 'cpr_dx_' + (x - cue_sibling_x)], printer)
                         print_event_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0] + '_' + (x - cue_sibling_x)], printer)
+//                        print_event_sequence(child, cue_up_path, cue_down_path, ['cpr_' + tree[0] + '_' + cue_rel_distance(x, cue_sibling_x)], printer)
                     }
                 } else {
                     cue_down_path = cue_down_path + [tree]

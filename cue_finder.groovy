@@ -59,8 +59,8 @@ finder = new CueFinder()
 
 finder.add_to_lexicon(train_file)
 finder.add_to_lexicon(dev_file)
-finder.add_to_lexicon(test1_file)
-finder.add_to_lexicon(test2_file)
+//finder.add_to_lexicon(test1_file)
+//finder.add_to_lexicon(test2_file)
 
 //(finder.lexicon.keySet() as List).sort().each { println it }
 
@@ -69,7 +69,7 @@ println finder.lexicon.size()
 
 finder.train(instances)
 
-(AffixRule.suffixes.keySet() as List).sort().each { println it }
+AffixRule.suffixes.each { print it ; print ' ' } ; println()
 
 if (false) {
 

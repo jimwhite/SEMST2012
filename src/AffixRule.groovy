@@ -78,7 +78,8 @@ class AffixRule extends Rule
         root = root.toLowerCase()
 //        !gold_negative.contains(root) && CueFinder.lexicon.containsKey(root)
 //        (pos[0][0] == 'J' || pos[0][0] == 'R') && (CueFinder.lexicon.containsKey(root) || (prefix && suffixes.any { CueFinder.lexicon.containsKey(root + it) }))
-        (pos[0][0] == 'J') && (CueFinder.lexicon.containsKey(root) || (prefix && suffixes.any { CueFinder.lexicon.containsKey(root + it) }))
+//        (pos[0][0] == 'J') && (CueFinder.lexicon.containsKey(root) || (prefix && suffixes.any { CueFinder.lexicon.containsKey(root + it) }))
+        (pos[0][0] == 'J') && (CueFinder.lexicon.containsKey(root) || (prefix && suffixes.grep { it.value > 2 }.any { CueFinder.lexicon.containsKey(root + it.key) }))
     }
 
     void addPositive(List<Map> tokens, Cue cue)
@@ -94,7 +95,7 @@ class AffixRule extends Rule
                     CueFinder.lexicon.each { w, k ->
                         if (w.length() > 3 && negated.startsWith(w) && (negated.length() > w.length() + 1)) {
                             def suffix = negated.substring(w.length())
-                            println "$suffix $word $negated $w"
+//                            println "$suffix $word $negated $w"
                             suffixes[suffix] = suffixes[suffix] + 1
                         }
                     }

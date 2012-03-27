@@ -10,7 +10,7 @@ class CueFinder
         instances.each { instance ->
             instance.gold.each { cue ->
                 def rule = Rule.ruleForCue(instance.tokens, cue)
-                if (rule instanceof AffixRule && rules.containsKey(rule)) {
+                if (rules.containsKey(rule)) {
                     rules[rule].addPositive(instance.tokens, cue)
                 } else {
                     rules[rule] = rule
@@ -27,9 +27,8 @@ class CueFinder
             def matches = rules.values().collectMany { it.match(tokens) }
 
             matches.each { Cue cue ->
-                if ((cue.type == Cue.CueType.AFFIX) && !(instance.gold.contains(cue))) {
-//            println "Negative case ${cue}"
-                    rules[Rule.ruleForCue(instance.tokens, cue)].addNegative(instance.tokens, cue)
+                if (!(instance.gold.contains(cue))) {
+                    rules[Rule.ruleForCue(instance.tokens, cue)]?.addNegative(instance.tokens, cue)
                 }
             }
         }

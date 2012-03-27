@@ -4,6 +4,10 @@ abstract class Rule
     
     abstract List<Cue> match(List<Map> tokens);
 
+    void addPositive(List<Map> tokens, Cue cue) { }
+
+    void addNegative(List<Map> tokens, Cue cue) { }
+
     static Rule ruleForCue(List<Map> instance, Cue cue)
     {
         switch (cue.type) {
