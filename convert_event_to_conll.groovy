@@ -16,5 +16,5 @@ def decoder = new CoNLLDecode()
 
 //println "convert_event_to_conll($train_event_output, $train_file, $sys_train_file)"
 
-decoder.convert_event_to_conll(train_event_output, train_file, sys_train_file)
-if (args.size() < 3) decoder.convert_event_to_conll(dev_event_output, dev_file, sys_dev_file)
+decoder.convert_event_to_conll((args.size() < 3 || (args[3] as Boolean)), train_event_output, train_file, sys_train_file)
+if (args.size() < 3) decoder.convert_event_to_conll(false, dev_event_output, dev_file, sys_dev_file)

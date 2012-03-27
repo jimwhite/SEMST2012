@@ -56,8 +56,8 @@ if (prepare_data) {
     decoder.tree_to_scope_sequence(train_trees_file, train_scope_file)
     decoder.tree_to_scope_sequence(dev_trees_file, dev_scope_file)
 
-    decoder.tree_to_event_sequence(train_trees_file, train_event_file)
-    decoder.tree_to_event_sequence(dev_trees_file, dev_event_file)
+    decoder.tree_to_event_sequence(true, train_trees_file, train_event_file)
+    decoder.tree_to_event_sequence(false, dev_trees_file, dev_event_file)
 }
 
 /*

@@ -348,7 +348,9 @@ static def sexp_escape(String s)
         }
     }
 
-    def convert_event_to_conll(File event_file, File in_file, File out_file)
+    def all_tokens_for_events = true
+
+    def convert_event_to_conll(Boolean training, File event_file, File in_file, File out_file)
     {
         out_file.withWriter { printer ->
             in_file.withReader { reader ->
@@ -360,23 +362,54 @@ static def sexp_escape(String s)
                         List<String> lines = delimitedReader.readLines()
                         //     def (chap_name, sent_indx, tok_indx, word, lemma, pos, syntax) = columns
 
-                        def negated_scope_count = (CoNLLDecode.decode_line_to_token(lines[0]).labels.size() / 3) as Integer
+                        def tokens = decode_lines_to_tokens(lines)
 
-                        def sys_labels = [:].withDefault { [:] }
+                        def negated_scope_count = (tokens[0].labels.size() / 3) as Integer
+
+                        def sys_labels = [:].withDefault { [:].withDefault { '_' } }
+
+//                        negated_scope_count.times { scope_i ->
+//                            tokens.size().times { token_i ->
+//                                def label = label_reader.readLine().trim()
+//                                if (!(label in ['+', '-', '!', '[', '_', ']'])) println "Unexpected label: $label $scope_i $token_i ${lines[0]}"
+//                                sys_labels[scope_i][token_i] = label
+//                            }
+//                            def bl = label_reader.readLine().trim()
+//                            if (bl != "") println "Label file out of sync! Expected blank line.  Got '$bl'"
+//                        }
 
                         negated_scope_count.times { scope_i ->
-                            lines.size().times { token_i ->
-                                def label = label_reader.readLine().trim()
-                                if (!(label in ['+', '-', '!', '[', '_', ']'])) println "Unexpected label: $label $scope_i $token_i ${lines[0]}"
-                                sys_labels[scope_i][token_i] = label
+                            def can_has_event = true
+                            
+                            if (training) {
+                                can_has_event = false
+
+                                tokens.eachWithIndex { token, token_i ->
+                                    def scope_labels = token.labels[(scope_i * 3)..<((scope_i + 1) * 3)]
+                                    if (scope_labels[2] != '_') { can_has_event = true }
+                                }
                             }
-                            def bl = label_reader.readLine().trim()
-                            if (bl != "") println "Label file out of sync! Expected blank line.  Got '$bl'"
+
+                            if (all_tokens_for_events || can_has_event) {
+                                def has_scope = false
+                                tokens.eachWithIndex { token, token_i ->
+                                    def scope_labels = token.labels[(scope_i * 3)..<((scope_i + 1) * 3)]
+                                    if (all_tokens_for_events || (scope_labels[1] != '_')) {
+                                        has_scope = true
+                                        def label = label_reader.readLine().trim()
+                                        if (!(label in ['+', '-', '!', '[', '_', ']'])) println "Unexpected label: $label $scope_i $token_i ${lines[0]}"
+                                        sys_labels[scope_i][token_i] = label
+                                    }
+                                }
+                            
+                                if (has_scope) {
+                                    def bl = label_reader.readLine().trim()
+                                    if (bl != "") println "Label file out of sync! Expected blank line.  Got '$bl'"
+                                }
+                            }
                         }
 
-                        lines.eachWithIndex { line, token_i ->
-                            def token = CoNLLDecode.decode_line_to_token(line)
-
+                        tokens.eachWithIndex { token, token_i ->
                             def negated_scope_count_i = (token.labels.size() / 3) as Integer
 
                             assert negated_scope_count == negated_scope_count_i
@@ -586,7 +619,7 @@ static def sexp_escape(String s)
         (cue_sibling_x ? 'X' : 'H') + d
     }
 
-    def tree_to_event_sequence(File tree_infile, File outfile)
+    def tree_to_event_sequence(Boolean training, File tree_infile, File outfile)
     {
         outfile.withPrintWriter { printer ->
             tree_infile.withReader { reader ->
@@ -601,9 +634,9 @@ static def sexp_escape(String s)
 
                         def cue_path = path_to_cue(sexp)
 //                        println cue_path
-                        if (cue_path) {
+                        if (cue_path && (all_tokens_for_events || !training || find_event_tokens(sexp))) {
                             print_event_sequence(sexp, cue_path, [], ['cpr_root'], printer)
-                            printer.println()
+                            if (all_tokens_for_events || training || find_scope_tokens(sexp)) { printer.println() }
                         }
                     }
                 }
@@ -651,7 +684,7 @@ static def sexp_escape(String s)
 
                 // cc.mallet.fst.SimpleTagger says "whitespace" but what they mean is space.
 //                    printer.println (instance.join('\t'))
-                printer.println (instance.join(' '))
+                if (all_tokens_for_events || (tree[6] == '+')) { printer.println (instance.join(' ')) }
 
 //                throw new FooException()
             } else {
@@ -784,6 +817,33 @@ List find_cue(Object tree)
         null
     }
 }
+
+    List find_scope_tokens(tree)
+    {
+        if (tree instanceof List) {
+            if (tree[0] == 'token') {
+                (tree[6] == '+') ? [tree] : []
+            } else {
+                tree.tail().collectMany { find_scope_tokens(it) }
+            }
+        } else {
+            []
+        }
+    }
+
+    List find_event_tokens(tree)
+    {
+        if (tree instanceof List) {
+            if (tree[0] == 'token') {
+                (tree[7] == '+') ? [tree] : []
+            } else {
+                tree.tail().collectMany { find_event_tokens(it) }
+            }
+        } else {
+            []
+        }
+    }
+
 
 def printTree(Object tree, IndentWriter writer)
 {

@@ -84,7 +84,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="553" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="586" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -97,7 +97,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="547" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="580" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -124,6 +124,32 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/AffixRule.groovy" line="96" class="AffixRule" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="396" class="CoNLLDecode" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="364" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -223,7 +249,7 @@
       <file leaf-file-name="convert_conll_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="370" selection-end="370" vertical-scroll-proportion="0.0">
+            <state line="28" column="58" selection-start="745" selection-end="745" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -232,7 +258,25 @@
       <file leaf-file-name="convert_all_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="24" selection-start="2183" selection-end="2183" vertical-scroll-proportion="0.0">
+            <state line="59" column="40" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_to_conll.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_scope_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="20" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -247,28 +291,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="error_report.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="error_report.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/error_report.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="87" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.33333334">
+            <state line="25" column="87" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoNLLDecode.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CoNLLDecode.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="400" column="0" selection-start="16451" selection-end="16897" vertical-scroll-proportion="0.0">
+            <state line="686" column="61" selection-start="29887" selection-end="29887" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WordRule.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/WordRule.groovy">
+      <file leaf-file-name="convert_event_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="14" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+            <state line="20" column="0" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -298,9 +342,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/AffuxRule.groovy" />
         <option value="$PROJECT_DIR$/train_cue_finder.groovy" />
-        <option value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
         <option value="$PROJECT_DIR$/src/ContiguousWordsRule.groovy" />
         <option value="$PROJECT_DIR$/canonicalize_conll.groovy" />
         <option value="$PROJECT_DIR$/src/GappyWordsRule.groovy" />
@@ -309,10 +351,12 @@
         <option value="$PROJECT_DIR$/src/Rule.groovy" />
         <option value="$PROJECT_DIR$/src/WordRule.groovy" />
         <option value="$PROJECT_DIR$/src/CueFinder.groovy" />
-        <option value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
         <option value="$PROJECT_DIR$/convert_scope_to_conll.groovy" />
         <option value="$PROJECT_DIR$/src/AffixRule.groovy" />
         <option value="$PROJECT_DIR$/cue_finder.groovy" />
+        <option value="$PROJECT_DIR$/convert_all_to_mallet.groovy" />
+        <option value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
+        <option value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
         <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
       </list>
     </option>
@@ -416,18 +460,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy Script.error_report">
-    <configuration default="false" name="convert_to_conll" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="SEMST2012" />
-      <setting name="path" value="$PROJECT_DIR$/convert_to_conll.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Groovy Script.convert_all_to_mallet">
     <configuration default="false" name="convert_scope_to_conll" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
       <module name="SEMST2012" />
       <setting name="path" value="$PROJECT_DIR$/convert_scope_to_conll.groovy" />
@@ -487,6 +520,23 @@
       <setting name="workDir" value="$PROJECT_DIR$" />
       <setting name="debug" value="false" />
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="convert_event_to_conll" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
+      <module name="SEMST2012" />
+      <setting name="path" value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -673,13 +723,13 @@
     </configuration>
     <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Groovy Script.convert_conll_to_mallet" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy Script.convert_to_conll" />
-      <item index="2" class="java.lang.String" itemvalue="Groovy Script.convert_scope_to_conll" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy Script.train_cue_finder" />
-      <item index="4" class="java.lang.String" itemvalue="Groovy Script.cue_finder" />
-      <item index="5" class="java.lang.String" itemvalue="Groovy Script.canonicalize_conll" />
-      <item index="6" class="java.lang.String" itemvalue="Groovy Script.error_report" />
-      <item index="7" class="java.lang.String" itemvalue="Groovy Script.convert_all_to_mallet" />
+      <item index="1" class="java.lang.String" itemvalue="Groovy Script.convert_scope_to_conll" />
+      <item index="2" class="java.lang.String" itemvalue="Groovy Script.train_cue_finder" />
+      <item index="3" class="java.lang.String" itemvalue="Groovy Script.cue_finder" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy Script.canonicalize_conll" />
+      <item index="5" class="java.lang.String" itemvalue="Groovy Script.error_report" />
+      <item index="6" class="java.lang.String" itemvalue="Groovy Script.convert_all_to_mallet" />
+      <item index="7" class="java.lang.String" itemvalue="Groovy Script.convert_event_to_conll" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -737,7 +787,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15545993" sideWeight="0.6713881" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18176943" sideWeight="0.625118" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37488195" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37488195" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -800,13 +850,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/post_process_parses.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="0" selection-start="8360" selection-end="8743" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ContiguousWordsRule.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="305" selection-end="382" vertical-scroll-proportion="0.0">
@@ -856,44 +899,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="20" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="370" selection-end="370" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AffixRule.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="81" column="30" selection-start="3293" selection-end="3293" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="24" selection-start="2183" selection-end="2183" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="21" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="0" selection-start="16451" selection-end="16897" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -907,7 +915,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/error_report.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="87" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.33333334">
+        <state line="25" column="87" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="40" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_to_conll.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="20" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="58" selection-start="745" selection-end="745" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="686" column="61" selection-start="29887" selection-end="29887" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

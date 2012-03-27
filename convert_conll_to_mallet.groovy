@@ -26,4 +26,4 @@ decoder.convert_to_trees(infile, trees_file)
 
 decoder.tree_to_scope_sequence(trees_file, scope_file)
 
-decoder.tree_to_event_sequence(trees_file, event_file)
+decoder.tree_to_event_sequence(/*args[1] as Boolean*/false, trees_file, event_file)
