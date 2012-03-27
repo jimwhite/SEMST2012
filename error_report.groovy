@@ -22,6 +22,8 @@ new File('data/error_report.html').withWriter {
                         def gold_negated_scope_count = (gold_tokens[0].labels.size() / 3) as Integer
                         def sys_negated_scope_count = (sys_tokens[0].labels.size() / 3) as Integer
 
+                        if (gold_tokens.find { it.labels.collate(3).find { it[2] != '_' } } )
+
                         if (gold_negated_scope_count || sys_negated_scope_count) {
                             table(border: 1) {
                                 tr { gold_tokens.each { td(it.word) } }
@@ -30,6 +32,8 @@ new File('data/error_report.html').withWriter {
                                 tr()
                                 tr { td "gold" }
                                 gold_negated_scope_count.times { scope_i ->
+//                                    def labels = gold_tokens.collect { it.labels[(scope_i * 3)..<((scope_i + 1) * 3)] }
+//                                    tr { labels.each { label -> td(valign: 'top') { label.each { p(it) } } } }
                                     tr { gold_tokens.each { token -> td(valign: 'top') { token.labels[(scope_i * 3)..<((scope_i + 1) * 3)].each { p(it) } } } }
                                 }
                                 tr()

@@ -162,3 +162,21 @@ baskervilles14	79	16	in	in	IN	(PP*	***
 baskervilles14	79	17	his	his	PRP$	(NP*	***
 baskervilles14	79	18	impatience	impatience	NN	*))))	***
 
+The gold scopes the 'not' over only the 'a vision' while my system takes the whole conjunction 'a vision and a touch of nerves'.  Note also that the Collins parser agrees with me and not the annotators.
+
+wisteria02	37	0	I	I	PRP	(S(NP*)	_	_	_
+wisteria02	37	1	suppose	suppose	VBP	(VP*	_	_	_
+wisteria02	37	2	the	the	DT	(SBAR(S(NP*	_	the	_
+wisteria02	37	3	whole	whole	JJ	*	_	whole	_
+wisteria02	37	4	thing	thing	NN	*)	_	thing	_
+wisteria02	37	5	is	be	VBZ	(VP*	_	is	_
+wisteria02	37	6	not	not	RB	*	not	_	_
+wisteria02	37	7	a	a	DT	(NP(NP*	_	a	_
+wisteria02	37	8	vision	vision	NN	*)	_	vision	_
+wisteria02	37	9	and	and	CC	*	_	_	_
+wisteria02	37	10	a	a	DT	(NP(NP*	_	_	_
+wisteria02	37	11	touch	touch	NN	*)	_	_	_
+wisteria02	37	12	of	of	IN	(PP*	_	_	_
+wisteria02	37	13	nerves	nerve	NNS	(NP*))))))))	_	_	_
+wisteria02	37	14	?	?	.	*	_	_	_
+wisteria02	37	15	''	''	''	*)	_	_	_

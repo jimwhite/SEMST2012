@@ -228,7 +228,7 @@
       <file leaf-file-name="AffixRule.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AffixRule.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="16" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0">
+            <state line="49" column="24" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -237,7 +237,7 @@
       <file leaf-file-name="error_report.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/error_report.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="44" selection-start="1834" selection-end="1834" vertical-scroll-proportion="0.33333334">
+            <state line="24" column="28" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.55813956">
               <folding />
             </state>
           </provider>
@@ -315,10 +315,10 @@
         <option value="$PROJECT_DIR$/src/Cue.groovy" />
         <option value="$PROJECT_DIR$/canonicalize_conll.groovy" />
         <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
-        <option value="$PROJECT_DIR$/error_report.groovy" />
         <option value="$PROJECT_DIR$/cue_finder.groovy" />
         <option value="$PROJECT_DIR$/src/CueFinder.groovy" />
         <option value="$PROJECT_DIR$/src/AffixRule.groovy" />
+        <option value="$PROJECT_DIR$/error_report.groovy" />
       </list>
     </option>
   </component>
@@ -735,7 +735,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15545993" sideWeight="0.6713881" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18176943" sideWeight="0.66761094" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33238906" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33238906" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295562" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -883,14 +883,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AffixRule.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="16" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0">
+        <state line="49" column="24" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/error_report.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="44" selection-start="1834" selection-end="1834" vertical-scroll-proportion="0.33333334">
+        <state line="24" column="28" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.55813956">
           <folding />
         </state>
       </provider>
