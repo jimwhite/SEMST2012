@@ -560,6 +560,7 @@ static def sexp_escape(String s)
                 def instance = [
                         'pos_' + tree[2]
 //                        , 'pos1_' + tree[2][0]
+//                        , 'pos1_' + tree[2][0]
                         , 'word_' + tree[3].toLowerCase()
                         , 'lemma_' + tree[4].toLowerCase()
 //                        , 'reld=' + (((tree[8] as Integer) - (cue[8] as Integer)) < 0 ? 'L' : 'R')
@@ -568,7 +569,9 @@ static def sexp_escape(String s)
                         , 'cue_lemma_' + cue[4].toLowerCase()
                         , 'cue_pos_' + cue[2]
 //                        , 'cue_pos1_' + cue[2][0]
-                        , 'in=' + (tree[9] == '*')
+                        , 'b=' + (tree[9].startsWith('('))
+                        , 'i=' + (tree[9] == '*')
+                        , 'e=' + (tree[9].endsWith(')'))
                         , 'up_' + up_path
                         , 'down_' + down_path
 // No Help                , 'synl_' + tree[9].substring(0, tree[9].indexOf('*')+1)
@@ -661,6 +664,8 @@ static def sexp_escape(String s)
                 def instance = [
                         'pos_' + tree[2]
 //                        , 'pos1_' + tree[2][0]
+//                        , 'punc=' + !((tree[2])[0].isLetter())
+//                        , 'pos1_' + tree[2][0]
                         , 'word_' + tree[3].toLowerCase()
                         , 'lemma_' + tree[4].toLowerCase()
 //                        , 'reld=' + (((tree[8] as Integer) - (cue[8] as Integer)) < 0 ? 'L' : 'R')
@@ -669,7 +674,9 @@ static def sexp_escape(String s)
                         , 'cue_lemma_' + cue[4].toLowerCase()
                         , 'cue_pos_' + cue[2]
 //                        , 'cue_pos1_' + cue[2][0]
-                        , 'in=' + (tree[9] == '*')
+//                        , 'b=' + (tree[9].startsWith('('))
+//                        , 'i=' + (tree[9] == '*')
+//                        , 'e=' + (tree[9].endsWith(')'))
                         , 'up_' + up_path
                         , 'down_' + down_path
 //                        , 'scope=' + ((tree[5] == '_') ? tree[6] : '!')

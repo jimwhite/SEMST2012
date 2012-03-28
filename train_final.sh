@@ -16,7 +16,7 @@ java -d32 -Xmx800m -cp /opt/local/share/java/mallet-2.0.7/dist/mallet.jar:/opt/l
 
 java -d32 -Xmx800m -cp /opt/local/share/java/mallet-2.0.7/dist/mallet.jar:/opt/local/share/java/mallet-2.0.7/dist/mallet-deps.jar cc.mallet.fst.SimpleTagger --model-file data/event.model data/train.event.txt >data/output.train.event.txt
 
-./convert_event_to_conll.groovy data/SEM-2012-SharedTask-CD-SCO-09032012b/combined.txt data/output.train.event.txt output.training.conll.txt
+./convert_event_to_conll.groovy data/SEM-2012-SharedTask-CD-SCO-09032012b/combined.txt data/output.train.event.txt output.training.conll.txt true
   
 #./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-09032012b/combined.txt -s data/output.training.conll.txt  
 

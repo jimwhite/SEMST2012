@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 data_dir = new File('data')
-scope_dir = new File(data_dir, 'xSEM-2012-SharedTask-CD-SCO-09032012b')
+scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
 //train_file = new File(data_dir, 'sample.train.gappy.txt')
 train_file = new File(scope_dir, 'SEM-2012-SharedTask-CD-SCO-training-09032012.txt')

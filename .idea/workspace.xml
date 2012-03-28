@@ -84,7 +84,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="586" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="589" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -97,7 +97,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="580" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="583" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -227,8 +227,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -294,7 +294,7 @@
       <file leaf-file-name="cue_finder.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cue_finder.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="78" selection-start="456" selection-end="501" vertical-scroll-proportion="0.16336633">
+            <state line="3" column="32" selection-start="83" selection-end="83" vertical-scroll-proportion="-1.7650898">
               <folding />
             </state>
           </provider>
@@ -312,7 +312,7 @@
       <file leaf-file-name="CoNLLDecode.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="686" column="61" selection-start="29887" selection-end="29887" vertical-scroll-proportion="0.0">
+            <state line="679" column="41" selection-start="29641" selection-end="29641" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -355,9 +355,9 @@
         <option value="$PROJECT_DIR$/convert_all_to_mallet.groovy" />
         <option value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
         <option value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
-        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
         <option value="$PROJECT_DIR$/train_final.groovy" />
         <option value="$PROJECT_DIR$/cue_finder.groovy" />
+        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
       </list>
     </option>
   </component>
@@ -449,8 +449,8 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
     <property name="dynamic.classpath" value="false" />
+    <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -460,7 +460,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy Script.train_final">
+  <component name="RunManager" selected="Groovy Script.convert_all_to_mallet">
     <configuration default="false" name="train_cue_finder" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
       <module name="SEMST2012" />
       <setting name="path" value="$PROJECT_DIR$/train_cue_finder.groovy" />
@@ -565,24 +565,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -609,6 +591,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -779,8 +779,8 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21983914" sideWeight="0.625118" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15545993" sideWeight="0.6713881" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18123324" sideWeight="0.625118" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37488195" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18069705" sideWeight="0.625118" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37488195" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295562" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -879,19 +879,14 @@
         <state line="28" column="58" selection-start="745" selection-end="745" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="123" selection-end="208" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_final.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convert_to_conll.groovy">
+    <entry file="file://$PROJECT_DIR$/convert_cue_to_conll.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="18" column="0" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/error_report.groovy">
@@ -899,23 +894,19 @@
         <state line="25" column="87" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
+    <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="686" column="61" selection-start="29887" selection-end="29887" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/convert_cue_to_conll.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="6" column="0" selection-start="123" selection-end="208" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="1235" selection-end="1235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="25" column="0" selection-start="1235" selection-end="1235" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_to_conll.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
@@ -925,9 +916,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="679" column="41" selection-start="29641" selection-end="29641" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cue_finder.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="78" selection-start="456" selection-end="501" vertical-scroll-proportion="0.16336633">
+        <state line="3" column="32" selection-start="83" selection-end="83" vertical-scroll-proportion="-1.7650898">
           <folding />
         </state>
       </provider>
