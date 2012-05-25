@@ -1,3 +1,15 @@
+Experiments
+BIEO vs IO for scope
+
+Negated on scopes of positive examples.  Performance on just the positive examples was so low I didn’t try continue with factual/non-factual classifier for conditioning it.
+
+Adding begin/end constituent feature does not improve performance over just tree path.
+
+https://www.softconf.com/naaclhlt2012/STARSEM2012/
+177X-D3D9G5G9P6
+
+---
+
 insufferable but not insuperable
 
 Tokenization trouble:

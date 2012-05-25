@@ -31,3 +31,12 @@ java -d32 -Xmx800m -cp /opt/local/share/java/mallet-2.0.7/dist/mallet.jar:/opt/l
 
 # ./eval.cd-sco.pl -g data/run1/sys-cardboard.txt -s data/sysc-cardboard.txt
 # ./eval.cd-sco.pl -g data/run1/sys-circle.txt -s data/sysc-circle.txt
+
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/run1/sys-cardboard.txt
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/run1/sys-circle.txt
+
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/white-semst-submission-1-cardboard/closed/scope/sys-cardboard.txt
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/white-semst-submission-1-circle/closed/scope/sys-circle.txt
+
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/white-semst-submission-2-cardboard/closed/scope/sys-cardboard.txt
+#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/white-semst-submission-2-circle/closed/scope/sys-circle.txt
