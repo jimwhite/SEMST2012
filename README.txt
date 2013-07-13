@@ -24,7 +24,7 @@ The scope stage has tree-path features generated from the constituency parse sup
 
 0) Get the project source.
 
-jim$ git clone https://github.com/jimwhite/SEMST2012
+jim$ git clone https://github.com/jimwhite/SEMST2012.git
 
 jim$ cd SEMST2012
 
