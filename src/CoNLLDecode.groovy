@@ -557,6 +557,13 @@ static def sexp_escape(String s)
 //                def up_coordination = find_coordination(cue_up_path)
 //                def down_coordination = find_coordination(cue_down_path)
 
+                // JPW 2013-07-12 The b= and e= features, which are supposed to flag the edge (beginning or ending) of a constituent
+                // respectively are actually no-ops because they test for the wrong characters.  The s-expressions get serialized
+                // with square brackets rather than parenthesis so these tests should be for '[' and ']'.  I just tried
+                // "fixing" this code and find that on the dev set and one of test files I tried it performs slightly
+                // worse because even though scope token precision goes up slightly (f 84.85% to 85.31%) it winds up getting
+                // one less scope match in both cases (taking scope from f 76.43 down to 75.99).
+
                 def instance = [
                         'pos_' + tree[2]
 //                        , 'pos1_' + tree[2][0]

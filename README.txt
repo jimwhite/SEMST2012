@@ -10,6 +10,8 @@ The cue-finder is rather English-oriented and I would be surprised if it provide
 
 The scope stage has tree-path features generated from the constituency parse supplied with the task data.  I suspect that will need some modification if you use a dependency parse.  That is computed in CoNLLDecode.path_to_cue (called from CoNLLDecode.tree_to_scope_sequence called from convert_conll_to_mallet.groovy) 
 
+In revisiting this system I discovered that the code (CoNLLDecode.print_scope_sequence) that generates the "edge of constituent" features is actually a no-op because it tests for the wrong characters.  The problem is apparent in the MALLET training files for the scope classifier (data/train.scope.txt) where the b= and e= features, which are supposed to flag the edge (beginning or ending respectively) of a constituent, are always false.  I just tried "fixing" this code and find that on the dev set and one of test files I tried it performs slightly worse because even though scope token precision goes up slightly (f 84.85% to 85.31%) it winds up getting one less scope match in both cases (taking scope from f 76.43 down to 75.99).  Since these features make dev perform worse on dev, I would have not used them anyhow if I had found this bug before the shared task submission.  So actually the bug is in the documentation since the system report says I do use these features.  It were ever thus with documentation.
+
 @InProceedings{white:2012:STARSEM-SEMEVAL,
   author    = {White, James Paul},
   title     = {UWashington: Negation Resolution using Machine Learning Methods},
@@ -121,7 +123,31 @@ jim$ cd ..
 
 jim$ ./train_final.sh
 
-5) Run the system on the test data.  Again, the system reports are based on combining the "cardboard" and "circle" datasets into one.  Note that the training data is needed here because the cue finder trains its classifier when loaded rather than storing a model file.  
+5) Run the system in the dev data.  The cue finder ignores any labels on the input so it can safely take the dev file (which is also a "gold" file) as-is.
+
+jim$ ./test_final.sh data/starsem-st-2012-data/cd-sco/corpus/dev/SEM-2012-SharedTask-CD-SCO-dev-09032012.txt data/sys-dev.txt
+
+jim$ ./eval.cd-sco.pl -g data/starsem-st-2012-data/cd-sco/corpus/dev/SEM-2012-SharedTask-CD-SCO-dev-09032012.txt -s data/sys-dev.txt
+
+---------------------------+------+--------+------+------+------+---------------+------------+---------
+                            | gold | system | tp   | fp   | fn   | precision (%) | recall (%) | F1  (%) 
+----------------------------+------+--------+------+------+------+---------------+------------+---------
+Cues:                          173 |    163 |  152 |    8 |   21 |         95.00 |      87.86 |   91.29
+Scopes(cue match):             168 |    155 |  107 |    5 |   61 |         95.54 |      63.69 |   76.43
+Scopes(no cue match):          168 |    155 |  107 |    5 |   61 |         95.54 |      63.69 |   76.43
+Scopes(no cue match, no punc): 168 |    155 |  107 |    5 |   61 |         95.54 |      63.69 |   76.43
+Scope tokens(no cue match):   1368 |   1253 | 1109 |  137 |  259 |         89.00 |      81.07 |   84.85
+Negated(no cue match):         122 |     83 |   50 |   20 |   59 |         71.43 |      45.87 |   55.87
+Full negation:                 173 |    163 |   66 |    8 |  107 |         89.19 |      38.15 |   53.44
+---------------------------+------+--------+------+------+------+---------------+------------+---------
+ # sentences: 787
+ # negation sentences: 144
+ # negation sentences with errors: 94
+ % correct sentences: 87.29
+ % correct negation sentences: 34.72
+--------------------------------------------------------------------------------------------------------
+
+6) Run the system on the test data.  Again, the system reports are based on combining the "cardboard" and "circle" datasets into one.  Note that the training data is needed here because the cue finder trains its classifier when loaded rather than storing a model file.  
 
 jim$ ./test_final.sh data/starsem-st-2012-data/cd-sco/corpus/test/SEM-2012-SharedTask-CD-SCO-test-cardboard.txt data/sys-cardboard.txt
 
