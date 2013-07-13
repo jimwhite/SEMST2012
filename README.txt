@@ -127,3 +127,20 @@ jim$ ./test_final.sh data/starsem-st-2012-data/cd-sco/corpus/test/SEM-2012-Share
 
 jim$ ./eval.cd-sco.pl -g data/starsem-st-2012-data/cd-sco/corpus/test-gold/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/sys-cardboard.txt 
 
+---------------------------+------+--------+------+------+------+---------------+------------+---------
+                            | gold | system | tp   | fp   | fn   | precision (%) | recall (%) | F1  (%) 
+----------------------------+------+--------+------+------+------+---------------+------------+---------
+Cues:                          133 |    135 |  121 |   13 |   12 |         90.30 |      90.98 |   90.64
+Scopes(cue match):             128 |    130 |   85 |   13 |   43 |         86.73 |      66.41 |   75.22
+Scopes(no cue match):          128 |    130 |   85 |   13 |   42 |         86.87 |      67.19 |   75.77
+Scopes(no cue match, no punc): 128 |    130 |   85 |   13 |   42 |         86.87 |      67.19 |   75.77
+Scope tokens(no cue match):    963 |    937 |  811 |  126 |  152 |         86.55 |      84.22 |   85.37
+Negated(no cue match):          87 |     79 |   44 |   33 |   39 |         57.14 |      53.01 |   55.00
+Full negation:                 133 |    135 |   50 |   13 |   83 |         79.37 |      37.59 |   51.02
+---------------------------+------+--------+------+------+------+---------------+------------+---------
+ # sentences: 496
+ # negation sentences: 119
+ # negation sentences with errors: 76
+ % correct sentences: 83.06
+ % correct negation sentences: 36.13
+--------------------------------------------------------------------------------------------------------
