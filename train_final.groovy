@@ -1,9 +1,8 @@
 #!/usr/bin/env groovy
 
-data_dir = new File('data')
-scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
+train_file = new File(args[0])
 
-train_file = new File(scope_dir, 'combined.txt')
+data_dir = new File('data')
 
 train_cues_file = new File(data_dir, 'train.cues.txt')
 train_cues_vector_file = new File(data_dir, 'train.cues.vectors')

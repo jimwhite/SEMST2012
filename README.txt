@@ -1,4 +1,26 @@
-README.txt for UWashington's submission to *SEM 2012 shared task for resolving the scope of negation.
+README.txt for UWashington's submission to *SEM 2012 shared task for resolving the scope of negation.  
+
+There are lots of bits of code laying about but these instructions exercise the ones necessary to produce the reported results.  The mix of Bash and Groovy scripts don't help things either since things would be tidier if they were all in Groovy or Gradle.  The project files are for Intellij IDEA.
+
+A few points that may be relevant:
+
+The code is built specifically around the shared task and the bulk of the code is just doing file format munging.  The data format is based on CoNLL and so there are three task-specific columns: cue, scope, and event.  The system consists of three classifiers in a pipeline and they each take the CoNLL-style file as input then output a new one with their column filled in.  The top-level scripts are "train_final.sh" and "test_final.sh".  
+
+The cue-finder is rather English-oriented and I would be surprised if it provides much help with Chinese.  Although its pattern-learning skeleton might be useful, this was the worst-performing part of the system (and almost the worst in the shared-task, but then it was written on about the last of the seven days ;-).  CRF worked so well for the other stages my thought is that it would probably work pretty well for cue-finding too.
+
+The scope stage has tree-path features generated from the constituency parse supplied with the task data.  I suspect that will need some modification if you use a dependency parse.  That is computed in CoNLLDecode.path_to_cue (called from CoNLLDecode.tree_to_scope_sequence called from convert_conll_to_mallet.groovy) 
+
+@InProceedings{white:2012:STARSEM-SEMEVAL,
+  author    = {White, James Paul},
+  title     = {UWashington: Negation Resolution using Machine Learning Methods},
+  booktitle = {{*SEM 2012}: The First Joint Conference on Lexical and Computational Semantics -- Volume 1: Proceedings of the main conference and the shared task, and Volume 2: Proceedings of the Sixth International Workshop on Semantic Evaluation {(SemEval 2012)}},
+  month     = {7-8 June},
+  year      = {2012},
+  address   = {Montr\'{e}al, Canada},
+  publisher = {Association for Computational Linguistics},
+  pages     = {335--339},
+  url       = {http://www.aclweb.org/anthology/S12-1044}
+}
 
 0) Get the project source.
 
@@ -98,4 +120,10 @@ jim$ cd ..
 4) Train the classifiers.  The train_final.sh script will do that and it has a script variable TRAINING_DATA to point at the appropriate file.  In the version in Github that is set to just the training file in the corpus.  For the final system reported in the shared task the train and dev files were pasted together to form a combined file for training.
 
 jim$ ./train_final.sh
+
+5) Run the system on the test data.  Again, the system reports are based on combining the "cardboard" and "circle" datasets into one.
+
+jim$ ./test_final.sh data/starsem-st-2012-data/cd-sco/corpus/test/SEM-2012-SharedTask-CD-SCO-test-cardboard.txt data/sys-cardboard.txt
+
+jim$ ./eval.cd-sco.pl -g data/starsem-st-2012-data/cd-sco/corpus/test-gold/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/sys-cardboard.txt 
 
