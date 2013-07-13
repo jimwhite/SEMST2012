@@ -27,6 +27,6 @@ java -d32 -Xmx800m -cp "$MALLET_CLASSPATH" cc.mallet.fst.SimpleTagger --train tr
 
 java -d32 -Xmx800m -cp "$MALLET_CLASSPATH" cc.mallet.fst.SimpleTagger --model-file data/event.model data/train.event.txt >data/output.train.event.txt
 
-./convert_event_to_conll.groovy "$TRAINING_DATA" data/output.train.event.txt output.training.conll.txt true
+./convert_event_to_conll.groovy "$TRAINING_DATA" data/output.train.event.txt data/output.training.conll.txt true
   
 #./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-09032012b/combined.txt -s data/output.training.conll.txt  
