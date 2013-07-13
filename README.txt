@@ -121,7 +121,7 @@ jim$ cd ..
 
 jim$ ./train_final.sh
 
-5) Run the system on the test data.  Again, the system reports are based on combining the "cardboard" and "circle" datasets into one.
+5) Run the system on the test data.  Again, the system reports are based on combining the "cardboard" and "circle" datasets into one.  Note that the training data is needed here because the cue finder trains its classifier when loaded rather than storing a model file.  
 
 jim$ ./test_final.sh data/starsem-st-2012-data/cd-sco/corpus/test/SEM-2012-SharedTask-CD-SCO-test-cardboard.txt data/sys-cardboard.txt
 
