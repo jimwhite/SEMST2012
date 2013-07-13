@@ -20,28 +20,3 @@ java -d32 -Xmx800m -cp "$MALLET_CLASSPATH" cc.mallet.fst.SimpleTagger --model-fi
 java -d32 -Xmx800m -cp "$MALLET_CLASSPATH" cc.mallet.fst.SimpleTagger --model-file data/event.model data/event.sys1.dev.conll.txt >data/sys2.dev.event.txt
 
 ./convert_event_to_conll.groovy data/sys1.dev.conll.txt data/sys2.dev.event.txt $2 false
-
-
-# ./test_final.sh data/SEM-2012-SharedTask-CD-SCO-09032012b/SEM-2012-SharedTask-CD-SCO-dev-09032012.txt data/xdev.txt
-# ./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-09032012b/SEM-2012-SharedTask-CD-SCO-dev-09032012.txt -s data/xdev.txt
-
-# ./test_final.sh data/SEM-2012-SharedTask-CD-SCO-09032012b/SEM-2012-SharedTask-CD-SCO-training-09032012.txt data/xtrain.txt
-# ./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-09032012b/SEM-2012-SharedTask-CD-SCO-training-09032012.txt -s data/xtrain.txt
-
-# ./test_final.sh data/SEM-2012-SharedTask-CD-SCO-test-16032012/SEM-2012-SharedTask-CD-SCO-test-cardboard.txt data/run1/sys-cardboard.txt
-# ./test_final.sh data/SEM-2012-SharedTask-CD-SCO-test-16032012/SEM-2012-SharedTask-CD-SCO-test-circle.txt data/run1/sys-circle.txt
-
-# CLASSPATH=out/production/SEMST2012:src ./canonicalize_conll.groovy data/run1/sys-cardboard.txt data/sysc-cardboard.txt
-# CLASSPATH=out/production/SEMST2012:src ./canonicalize_conll.groovy data/run1/sys-circle.txt data/sysc-circle.txt
-
-# ./eval.cd-sco.pl -g data/run1/sys-cardboard.txt -s data/sysc-cardboard.txt
-# ./eval.cd-sco.pl -g data/run1/sys-circle.txt -s data/sysc-circle.txt
-
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/run1/sys-cardboard.txt
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/run1/sys-circle.txt
-
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/white-semst-submission-1-cardboard/closed/scope/sys-cardboard.txt
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/white-semst-submission-1-circle/closed/scope/sys-circle.txt
-
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-cardboard-GOLD.txt -s data/white-semst-submission-2-cardboard/closed/scope/sys-cardboard.txt
-#./eval.cd-sco.pl -g data/SEM-2012-SharedTask-CD-SCO-test-GOLD-23032012/SEM-2012-SharedTask-CD-SCO-test-circle-GOLD.txt -s data/white-semst-submission-2-circle/closed/scope/sys-circle.txt
