@@ -1,5 +1,11 @@
 #!/usr/bin/env groovy
 
+// This should be more properly called "merge_event_with_conll.groovy".
+// It takes three arguments:
+//    0) Path to source CoNLL file,
+//    1) Path to MALLET format file with event classifier outputs,
+//    2) Path to destination CoNLL file which will be the source CoNLL file with the event judgements merged in.
+
 data_dir = new File('data')
 scope_dir = new File(data_dir, 'SEM-2012-SharedTask-CD-SCO-09032012b')
 
