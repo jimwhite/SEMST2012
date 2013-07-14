@@ -2,22 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47bb3afa-38a5-421f-8176-b597c44116f1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SEMST2012/BlankLineTerminatedReader.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SEMST2012.iml" afterPath="$PROJECT_DIR$/SEMST2012.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_final.sh" afterPath="$PROJECT_DIR$/test_final.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train_final.groovy" afterPath="$PROJECT_DIR$/train_final.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train_final.sh" afterPath="$PROJECT_DIR$/train_final.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SEMST2012.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373674578346" ignored="false" />
+    <file path="/Dummy.txt" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373773192768" ignored="false" />
     <file path="/train_final.groovy" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373673370097" ignored="false" />
     <file path="/train_final.sh" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373675045143" ignored="false" />
     <file path="/test_final.sh" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373675128095" ignored="false" />
+    <file path="/CoNLLDecode.groovy" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373686421896" ignored="false" />
+    <file path="/convert_event_to_conll.groovy" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373688057001" ignored="false" />
+    <file path="/convert_scope_to_conll.groovy" changelist="47bb3afa-38a5-421f-8176-b597c44116f1" time="1373688075806" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,26 +28,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <exception_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint class_name="FooException" package_name="">
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </exception_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -164,7 +140,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="589" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="596" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -179,7 +155,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="583" class="CoNLLDecode" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/CoNLLDecode.groovy" line="590" class="CoNLLDecode" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -255,6 +231,26 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <exception_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint class_name="FooException" package_name="">
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+    </exception_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -264,35 +260,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="convert_all_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CoNLLDecode.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
           <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="24" selection-start="14" selection-end="25" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_conll_to_mallet.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="0" selection-start="771" selection-end="771" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_cue_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_cue_to_conll.groovy">
+          <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_final.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_final.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="191" selection-end="304" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scope_test.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scope_test.sh">
+      <file leaf-file-name="canonicalize_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/canonicalize_conll.groovy">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -300,37 +296,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_final.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_final.groovy">
+      <file leaf-file-name="cue_finder.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cue_finder.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="22" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="convert_scope_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="38" selection-start="1235" selection-end="1235" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cue.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cue.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="71" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WordRule.groovy" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/WordRule.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="6" selection-start="111" selection-end="111" vertical-scroll-proportion="0.060240965">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -339,7 +308,43 @@
       <file leaf-file-name="convert_event_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CueFinder.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CueFinder.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="0" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_final.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train_final.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="191" selection-end="304" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_final.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_final.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="102" selection-start="141" selection-end="141" vertical-scroll-proportion="0.045180723">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_scope_to_conll.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="51" selection-start="74" selection-end="74" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -369,16 +374,16 @@
         <option value="$PROJECT_DIR$/src/Rule.groovy" />
         <option value="$PROJECT_DIR$/src/WordRule.groovy" />
         <option value="$PROJECT_DIR$/src/CueFinder.groovy" />
-        <option value="$PROJECT_DIR$/convert_scope_to_conll.groovy" />
         <option value="$PROJECT_DIR$/src/AffixRule.groovy" />
         <option value="$PROJECT_DIR$/convert_all_to_mallet.groovy" />
-        <option value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
         <option value="$PROJECT_DIR$/convert_conll_to_mallet.groovy" />
         <option value="$PROJECT_DIR$/cue_finder.groovy" />
-        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
         <option value="$PROJECT_DIR$/train_final.groovy" />
         <option value="$PROJECT_DIR$/train_final.sh" />
         <option value="$PROJECT_DIR$/test_final.sh" />
+        <option value="$PROJECT_DIR$/src/CoNLLDecode.groovy" />
+        <option value="$PROJECT_DIR$/convert_scope_to_conll.groovy" />
+        <option value="$PROJECT_DIR$/convert_event_to_conll.groovy" />
       </list>
     </option>
   </component>
@@ -417,16 +422,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -459,6 +454,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SEMST2012" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SEMST2012" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -484,7 +503,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="Repository.Attach.JavaDocs" value="true" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -861,52 +880,47 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cue_finder.groovy">
+    <entry file="file://$PROJECT_DIR$/scope_test.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="18" selection-start="2101" selection-end="2101" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CueFinder.groovy">
+    <entry file="file://$PROJECT_DIR$/src/WordRule.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="8" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AffixRule.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="6" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContiguousWordsRule.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="6" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GappyWordsRule.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="15" selection-start="111" selection-end="125" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rule.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="44" selection-start="609" selection-end="624" vertical-scroll-proportion="0.0">
+        <state line="5" column="6" selection-start="111" selection-end="111" vertical-scroll-proportion="0.060240965">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cue.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="71" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.0">
+        <state line="51" column="71" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.484789">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convert_all_to_mallet.groovy">
+    <entry file="file://$PROJECT_DIR$/train_final.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canonicalize_conll.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canonicalize_conll.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cue_finder.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -915,12 +929,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CoNLLDecode.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="1" column="24" selection-start="14" selection-end="25" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scope_test.sh">
+    <entry file="file://$PROJECT_DIR$/convert_conll_to_mallet.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="771" selection-end="771" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_cue_to_conll.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -929,42 +950,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/convert_scope_to_conll.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="38" selection-start="1235" selection-end="1235" vertical-scroll-proportion="0.0">
+        <state line="2" column="51" selection-start="74" selection-end="74" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/convert_event_to_conll.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
+        <state line="7" column="0" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_final.groovy">
+    <entry file="uml://JAVA/CueFinder">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>CueFinder</OriginalElement>
+          <nodes>
+            <node x="" y="">CueFinder</node>
+            <node x="" y="">groovy.lang.GroovyObjectSupport</node>
+            <node x="" y="">groovy.lang.GroovyObject</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="95.5" y="95.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CueFinder.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="22" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+        <state line="22" column="0" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_final.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="191" selection-end="304" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="191" selection-end="304" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_final.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="102" selection-start="141" selection-end="141" vertical-scroll-proportion="0.04639175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WordRule.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="6" selection-start="111" selection-end="111" vertical-scroll-proportion="0.060240965">
+        <state line="3" column="102" selection-start="141" selection-end="141" vertical-scroll-proportion="0.045180723">
           <folding />
         </state>
       </provider>
